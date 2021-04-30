@@ -22,7 +22,7 @@ class Movie:
         
     def __str__(self):
         "Return a string with the name and score of specified user"
-        return f"Movie Review: {self.name} ({self.year}) {self.rating} ({self.genre}) {self.description} ({self.summary}) {self.length} ({self.maturity})  "
+        return f"Name: {self.name}; Year: {self.year}; Rating: {self.rating}; Genre: {self.genre}; Description: {self.description}; Summary: {self.summary}; Length: {self.length}; Maturity: {self.maturity}"
         
     def __gt__(self, other):
         "Return a boolean indicating if user score greater than opponent score"
@@ -30,7 +30,6 @@ class Movie:
             raise TypeError("Unsupported type")
                 
         return self.rating > other.rating
-
         
     @property
     def name(self):
