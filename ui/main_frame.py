@@ -1,6 +1,6 @@
 from business.data_access_helper import DataAccessHelper
 from db.db_manager import DatabaseManager
-from models.movie_review import Movie
+from Models.movie_review import Movie
 
 from tkinter import *
 from tkinter.ttk import Treeview
