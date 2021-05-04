@@ -1,139 +1,148 @@
 import pytest
-from models.movie_review import Movie
+from Models.movie_review import Movie
 
-def test_instance():
+@pytest.fixture
+def good_review():
+    return Movie(2, "Trees", 2011, 7.0, "comedy", 120, "very good")
+
+@pytest.fixture
+def bad_review():
+    #id,name,year,rating,genre,length,review
+    return Movie("9", 9, 1850, 11.0, 5, True, -11)
+
+def test_good_instance(good_review):
     #Test if the movie review class is saving data properly
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_name')
-    assert type(the_movie_review._name) == str
-    assert the_movie_review._name == "Trees"
-    
-    assert hasattr(the_movie_review, '_year')
-    assert type(the_movie_review._year) == int
-    assert the_movie_review._year == 2011
 
-    assert hasattr(the_movie_review, '_rating')
-    assert type(the_movie_review._rating) == float
-    assert the_movie_review._rating == 7.0
-
-    assert hasattr(the_movie_review, '_genre')
-    assert type(the_movie_review._genre) == str
-    assert the_movie_review._genre == "comedy"
-
-    assert hasattr(the_movie_review, '_description')
-    assert type(the_movie_review._description) == str
-    assert the_movie_review._description == "look at nature"
+    assert hasattr(good_review, '_id')
+    assert type(good_review._id) == int
+    assert good_review._id == 2
     
-    assert hasattr(the_movie_review, '_summary')
-    assert type(the_movie_review._summary) == str
-    assert the_movie_review._summary == "very good"
+    assert hasattr(good_review, '_name')
+    assert type(good_review._name) == str
+    assert good_review._name == "Trees"
 
-    assert hasattr(the_movie_review, '_length')
-    assert type(the_movie_review._length) == int
-    assert the_movie_review._length == 105
+    assert hasattr(good_review, '_year')
+    assert type(good_review._year) == int
+    assert good_review._year == 2011
+
+    assert hasattr(good_review, '_rating')
+    assert type(good_review._rating) == float
+    assert good_review._rating == 7.0
+
+    assert hasattr(good_review, '_genre')
+    assert type(good_review._genre) == str
+    assert good_review._genre == "comedy"
+
+    assert hasattr(good_review, '_review')
+    assert type(good_review._review) == str
+    assert good_review._review == "very good"
     
-    assert hasattr(the_movie_review, '_maturity')
-    assert type(the_movie_review._maturity) == str
-    assert the_movie_review._maturity == "PG"
+    assert hasattr(good_review, '_length')
+    assert type(good_review._length) == int
+    assert good_review._length == 120
     
-def test_name_property():
+def test_bad_id():
+    #incorrect id given
+    with pytest.raises(ValueError):
+        Movie("", "Trees", 2011, 7.0, "comedy", 120, "very good")
+    
+def test_bad_name():
+    with pytest.raises(ValueError):
+        Movie(2, "", 2011, 7.0, "comedy", 120, "very good")
+
+def test_bad_year():
+    with pytest.raises(ValueError):
+        Movie(2, "Trees", 1850, 7.0, "comedy", 120, "very good")
+
+def test_bad_rating():
+    with pytest.raises(ValueError):
+        Movie(2, "Trees", 2011, 11.0, "comedy", 120, "very good")
+        
+def test_bad_genre():
+    with pytest.raises(ValueError):
+        Movie(2, "Trees", 2011, 7.0, False, 120, "very good")
+
+def test_bad_length():
+    with pytest.raises(ValueError):
+        Movie(2, "Trees", 2011, 7.0, "comedy", True, "very good")
+
+def test_bad_review():
+    with pytest.raises(ValueError):
+        Movie(2, "Trees", 2011, 7.0, "comedy", 120, 10)
+        
+def test_id_property(good_review):
+    """
+    Tests whether id property exists
+    """
+    assert hasattr(good_review, '_id')
+    assert type(good_review.__class__.id) == property
+    assert good_review._id == 2
+    #tests the setter
+    good_review.id = 3
+    assert good_review._id == 3
+    
+def test_name_property(good_review):
     """
     Tests whether name property exists
     """
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_name')
-    assert type(the_movie_review.__class__.name) == property
-    assert the_movie_review._name == "Trees"
-    the_movie_review.name = "Spiderman"
-    assert the_movie_review._name == "Spiderman"
+    assert hasattr(good_review, '_name')
+    assert type(good_review.__class__.name) == property
+    assert good_review._name == "Trees"
+    good_review.name = "Spiderman"
+    assert good_review._name == "Spiderman"
 
     
-def test_year_property():
+def test_year_property(good_review):
     """
     Tests whether year property exists
     """
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_year')
-    assert type(the_movie_review.__class__.year) == property
-    assert the_movie_review._year == 2011
-    the_movie_review.year = 2015
-    assert the_movie_review._year == 2015
+    assert hasattr(good_review, '_year')
+    assert type(good_review.__class__.year) == property
+    assert good_review._year == 2011
+    good_review.year = 2015
+    assert good_review._year == 2015
 
-def test_rating_property():
+def test_rating_property(good_review):
     """
     Tests whether rate property exists
     """
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_rating')
-    assert type(the_movie_review.__class__.rating) == property
-    assert the_movie_review._rating == 7.0
-    the_movie_review.rating = 8.6
-    assert the_movie_review._rating == 8.6
+    assert hasattr(good_review, '_rating')
+    assert type(good_review.__class__.rating) == property
+    assert good_review._rating == 7.0
+    good_review.rating = 8.6
+    assert good_review._rating == 8.6
 
-def test_genre_property():
+def test_genre_property(good_review):
     """
     Tests whether genre property exists
     """
-    the_movie_review = Movie("Trees", 2009, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_genre')
-    assert type(the_movie_review.__class__.genre) == property
-    assert the_movie_review._genre == "comedy"
-    the_movie_review.genre = "action"
-    assert the_movie_review._genre == "action"
+    assert hasattr(good_review, '_genre')
+    assert type(good_review.__class__.genre) == property
+    assert good_review._genre == "comedy"
+    good_review.genre = "action"
+    assert good_review._genre == "action"
 
-def test_description_property():
-    """
-    Tests whether description property exists
-    """
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_description')
-    assert type(the_movie_review.__class__.description) == property
-    assert the_movie_review._description == "look at nature"
-    the_movie_review.description = "amazing movie"
-    assert the_movie_review._description == "amazing movie"
 
-def test_summary_property():
-    """
-    Tests whether summary property exists
-    """
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_summary')
-    assert type(the_movie_review.__class__.summary) == property
-    assert the_movie_review._summary == "very good"
-    the_movie_review.summary = "all about the trees"
-    assert the_movie_review._summary == "all about the trees"
-
-def test_length_property():
+def test_length_property(good_review):
     """
     Tests whether length property exists
     """
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_length')
-    assert type(the_movie_review.__class__.length) == property
-    assert the_movie_review._length == 105
-    the_movie_review.length = 120
-    assert the_movie_review._length == 120
+   
+    assert hasattr(good_review, '_length')
+    assert type(good_review.__class__.length) == property
+    assert good_review._length == 120
+    good_review.length = 125
+    assert good_review._length == 125
 
-def test_maturity_property():
+def test_review(good_review):
     """
-    Tests whether maturity property exists
+    Tests whether review property exists
     """
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    
-    assert hasattr(the_movie_review, '_maturity')
-    assert type(the_movie_review.__class__.maturity) == property
-    assert the_movie_review._maturity == "PG"
-    the_movie_review.maturity = "R"
-    assert the_movie_review._maturity == "R"
+    assert hasattr(good_review, '_review')
+    assert type(good_review.__class__.review) == property
+    assert good_review._review == "very good"
+    good_review.review = "amazing movie"
+    assert good_review._review == "amazing movie"
 
-def test_movie_str():
-    the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
-    assert str(the_movie_review) == "Name: Trees; Year: 2011; Rating: 7.0; Genre: comedy; Description: look at nature; Summary: very good; Length: 105; Maturity: PG"
+def test_movie_str(good_review):
+    assert str(good_review) == "Id: 2; Name: Trees; Year: 2011; Rating: 7.0; Genre: comedy; Review: very good; Length: 120"

@@ -1,7 +1,7 @@
 class Movie:
     """ Simple class to represent a movie """
 
-    def __init__(self, id_, name_, year_, rating_, genre_, length_, maturity_, review_):
+    def __init__(self, id_, name_, year_, rating_, genre_, length_, review_):
         """ Initializes private attributes
 
         Args:
@@ -17,11 +17,11 @@ class Movie:
         self.rating = rating_
         self.genre = genre_
         self.length = length_
-        self.maturity = maturity_
+        self.review = review_
         
     def __str__(self):
         "Return a string with the name and score of specified user"
-        return f"Id: {self.id}; Name: {self.name}; Year: {self.year}; Rating: {self.rating}; Genre: {self.genre}; Review: {self.review}; Length: {self.length}; Maturity: {self.maturity}"
+        return f"Id: {self.id}; Name: {self.name}; Year: {self.year}; Rating: {self.rating}; Genre: {self.genre}; Review: {self.review}; Length: {self.length}"
         
     def __gt__(self, other):
         "Return a boolean indicating if user score greater than opponent score"
@@ -87,14 +87,14 @@ class Movie:
 
     @property
     def review(self):
-        return self._summary
+        return self._review
     
     @review.setter
     def review(self, value):
         if type(value) is not str or not value:
             raise ValueError("Invalid movie review.")
         else:
-            self._review= value
+            self._review = value
     
     @property
     def length(self):
@@ -107,13 +107,13 @@ class Movie:
         else:
             self._length = value
     
-    @property
-    def maturity(self):
-        return self._maturity
+    # @property
+    # def maturity(self):
+    #     return self._maturity
                 
-    @maturity.setter
-    def maturity(self, value):
-        if type(value) is not str or not value:
-            raise ValueError("Invalid movie maturity.") 
-        else:
-            self._maturity = value
+    # @maturity.setter
+    # def maturity(self, value):
+    #     if type(value) is not str or not value:
+    #         raise ValueError("Invalid movie maturity.") 
+    #     else:
+    #         self._maturity = value
