@@ -36,7 +36,7 @@ class DatabaseManager:
     
     def selectByName(self, name_):
         field = [name_]
-        self._cursor.execute("SELECT * FROM movies WHERE name=?;", field)
+        self._cursor.execute("SELECT * FROM movies WHERE name like ?;", ('%'+name_+'%',))
         return self._cursor.fetchall()    
     
     def selectByYear(self, year_):
