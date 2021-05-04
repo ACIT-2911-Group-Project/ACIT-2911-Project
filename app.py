@@ -1,14 +1,12 @@
-from db_manager import DatabaseManager
-from Models.movie_review import Movie
+from tkinter import *
+from ui.main_frame import MainFrame
 
+    
+if __name__ == "__main__":
+    root = Tk()         
+    root.title('Movie Reviews')
+    root.geometry('800x600')
 
-def main():
-  db = DatabaseManager("flicks.db")
-  
-  db.add("Batman", 2008, 9.5, "Thriller", "The dark knight saves Gotham", "Heath Ledger won an Oscar for his great performance. Must watch", 120, "R")
-
-  db.add("Spiderman", 1998, 8, "Action", "Red spider guy", "save bitches from danger", 100, "PG13")
-  
-  db.close()
-  
-main()
+    MainFrame(root)
+    
+    root.mainloop()  

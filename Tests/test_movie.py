@@ -1,5 +1,5 @@
 import pytest
-from Models.movie_review import Movie
+from models.movie_review import Movie
 
 def test_instance():
     #Test if the movie review class is saving data properly
@@ -137,5 +137,3 @@ def test_maturity_property():
 def test_movie_str():
     the_movie_review = Movie("Trees", 2011, 7.0, "comedy", "look at nature", "very good", 105, "PG")
     assert str(the_movie_review) == "Name: Trees; Year: 2011; Rating: 7.0; Genre: comedy; Description: look at nature; Summary: very good; Length: 105; Maturity: PG"
-
-

@@ -1,7 +1,7 @@
 class Movie:
     """ Simple class to represent a movie """
 
-    def __init__(self, name_, year_, rating_, genre_, description_, summary_, length_, maturity_):
+    def __init__(self, id_, name_, year_, rating_, genre_, length_, maturity_, review_):
         """ Initializes private attributes
 
         Args:
@@ -10,19 +10,18 @@ class Movie:
         
         Raises:
             ValueError: name is empty or not string, score is not integer or negative
-        """   
-        self._name = name_
-        self._year = year_
-        self._rating = rating_
-        self._genre = genre_
-        self._description = description_
-        self._summary = summary_
-        self._length = length_
-        self._maturity = maturity_
+        """
+        self.id = id_   
+        self.name = name_
+        self.year = year_
+        self.rating = rating_
+        self.genre = genre_
+        self.length = length_
+        self.maturity = maturity_
         
     def __str__(self):
         "Return a string with the name and score of specified user"
-        return f"Name: {self.name}; Year: {self.year}; Rating: {self.rating}; Genre: {self.genre}; Description: {self.description}; Summary: {self.summary}; Length: {self.length}; Maturity: {self.maturity}"
+        return f"Id: {self.id}; Name: {self.name}; Year: {self.year}; Rating: {self.rating}; Genre: {self.genre}; Review: {self.review}; Length: {self.length}; Maturity: {self.maturity}"
         
     def __gt__(self, other):
         "Return a boolean indicating if user score greater than opponent score"
@@ -30,6 +29,17 @@ class Movie:
             raise TypeError("Unsupported type")
                 
         return self.rating > other.rating
+    
+    @property
+    def id(self):
+        return self._id
+    
+    @id.setter
+    def id(self, value):
+        if type(value) is not int:
+            raise ValueError("Invalid movie Id.")
+        else:
+            self._id = value    
         
     @property
     def name(self):
@@ -76,26 +86,15 @@ class Movie:
             self._genre = value
 
     @property
-    def description(self):
-        return self._description
-    
-    @description.setter
-    def description(self, value):
-        if type(value) is not str or not value:
-            raise ValueError("Invalid movie description.")
-        else:
-            self._description = value
-
-    @property
-    def summary(self):
+    def review(self):
         return self._summary
     
-    @summary.setter
-    def summary(self, value):
+    @review.setter
+    def review(self, value):
         if type(value) is not str or not value:
-            raise ValueError("Invalid movie summary.")
+            raise ValueError("Invalid movie review.")
         else:
-            self._summary= value
+            self._review= value
     
     @property
     def length(self):
