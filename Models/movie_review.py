@@ -32,10 +32,12 @@ class Movie:
     
     @property
     def id(self):
+        ''' getter for movie id '''
         return self._id
     
     @id.setter
     def id(self, value):
+        ''' setter for movie id '''
         if type(value) is not int:
             raise ValueError("Invalid movie Id.")
         else:
@@ -43,10 +45,12 @@ class Movie:
         
     @property
     def name(self):
+        ''' getter for movie name '''
         return self._name
     
     @name.setter
     def name(self, value):
+        ''' setter for movie name '''
         if type(value) is not str or not value:
             raise ValueError("Invalid movie name.")
         else:
@@ -54,10 +58,12 @@ class Movie:
         
     @property
     def year(self):
+        ''' getter for movie release year '''
         return self._year
     
     @year.setter
     def year(self, value):
+        ''' setter for movie release year '''
         if type(value) is not int or value < 1890:
             raise ValueError("Invalid movie release year.")
         else:
@@ -65,10 +71,12 @@ class Movie:
 
     @property
     def rating(self):
+        ''' getter for movie rating '''
         return self._rating
                 
     @rating.setter
     def rating(self, value):
+        ''' setter for movie rating '''
         if type(value) is not float or value < 0.0 or value > 10.0:
             raise ValueError("Invalid movie rating.") 
         else:
@@ -76,10 +84,12 @@ class Movie:
 
     @property
     def genre(self):
+        ''' getter for movie genre '''
         return self._genre
     
     @genre.setter
     def genre(self, value):
+        ''' setter for movie genre '''
         if type(value) is not str or not value:
             raise ValueError("Invalid movie genre.")
         else:
@@ -87,10 +97,12 @@ class Movie:
 
     @property
     def review(self):
+        ''' getter for movie review '''
         return self._review
     
     @review.setter
     def review(self, value):
+        ''' setter for movie review '''
         if type(value) is not str or not value:
             raise ValueError("Invalid movie review.")
         else:
@@ -98,10 +110,12 @@ class Movie:
     
     @property
     def length(self):
+        ''' getter for movie length in minutes '''
         return self._length
                 
     @length.setter
     def length(self, value):
+        ''' setter for movie length in minutes '''
         if type(value) is not int or value < 0:
             raise ValueError("Invalid movie length.") 
         else:
