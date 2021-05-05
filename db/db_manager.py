@@ -11,6 +11,7 @@ class DatabaseManager:
         
         if not res or "movies" not in res:
             # if movies table does not exist, it will be created
+<<<<<<< Updated upstream
             self._cursor.execute("CREATE TABLE IF NOT EXISTS movies ( \
                 id INTEGER PRIMARY KEY, \
                 name TEXT NOT NULL, \
@@ -25,8 +26,16 @@ class DatabaseManager:
         "add a new movie to db"
         fields = [name_, year_, rating_, genre_, review_]
         self._cursor.execute("INSERT INTO movies ('name', 'year', 'rating', 'genre', 'review', 'length') VALUES (?,?,?,?,?,?,?);", fields)
+=======
+            self._cursor.execute("CREATE TABLE IF NOT EXISTS movies (id INTEGER PRIMARY KEY, name TEXT NOT NULL, year INTEGER NOT NULL, rating INTEGER NOT NULL, genre TEXT NOT NULL, review TEXT NOT NULL)")
+            self._db.commit()
+            
+    def add(self, name_, year_, rating_, genre_, review_):
+        "add a new movie to db"
+        fields = [name_, year_, rating_, genre_, review_]
+        self._cursor.execute("INSERT INTO movies ('name', 'year', 'rating', 'genre', 'review') VALUES (?,?,?,?,?);", fields)
+>>>>>>> Stashed changes
         self._db.commit()
-
 
     def selectAll(self):
         ''' return a list of all movies '''
@@ -51,7 +60,6 @@ class DatabaseManager:
         self._cursor.execute("DELETE FROM movies WHERE name=?;", field)
         self._db.commit() 
         
-    
     def close(self):
         self._db.close()
       

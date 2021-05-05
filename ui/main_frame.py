@@ -62,6 +62,7 @@ class MainFrame(Frame):
     frame_reviews = Frame(self)
     frame_reviews.grid(row=3, column=0, columnspan=11, rowspan=10, pady=40)
 
+<<<<<<< Updated upstream
     # Create a column for the result
     columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
     self._movie_tree_view = Treeview(frame_reviews, columns=columns, show="headings")
@@ -77,6 +78,21 @@ class MainFrame(Frame):
     scrollbar.configure(command=self._movie_tree_view.yview)
     scrollbar.pack(side="right", fill="y")
     self._movie_tree_view.config(yscrollcommand=scrollbar.set)          
+=======
+      columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
+      self._movie_tree_view = Treeview(frame_reviews, columns=columns, show="headings")
+      self._movie_tree_view.column("id", width=30)
+      for col in columns[1:]:
+        self._movie_tree_view.column(col, width=90)
+        self._movie_tree_view.heading(col, text=col)
+            
+      self._movie_tree_view.bind('<<TreeviewSelect>>', self.select_movie)
+      self._movie_tree_view.pack(side="left", fill="y")
+      scrollbar = Scrollbar(frame_reviews, orient='vertical')
+      scrollbar.configure(command=self._movie_tree_view.yview)
+      scrollbar.pack(side="right", fill="y")
+      self._movie_tree_view.config(yscrollcommand=scrollbar.set)          
+>>>>>>> Stashed changes
 
           
   def btnClickSearchByName(self):

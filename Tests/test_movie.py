@@ -3,12 +3,12 @@ from Models.movie_review import Movie
 
 @pytest.fixture
 def good_review():
-    return Movie(2, "Trees", 2011, 7.0, "comedy", 120, "very good")
+    return Movie(2, "Trees", 2011, 7.0, "comedy", "very good")
 
-@pytest.fixture
-def bad_review():
-    #id,name,year,rating,genre,length,review
-    return Movie("9", 9, 1850, 11.0, 5, True, -11)
+# @pytest.fixture
+# def bad_review():
+#     #id,name,year,rating,genre,length,review
+#     return Movie("9", 9, 1850, 11.0, 5, -11)
 
 def test_good_instance(good_review):
     #Test if the movie review class is saving data properly
@@ -37,38 +37,30 @@ def test_good_instance(good_review):
     assert type(good_review._review) == str
     assert good_review._review == "very good"
     
-    assert hasattr(good_review, '_length')
-    assert type(good_review._length) == int
-    assert good_review._length == 120
-    
 def test_bad_id():
     #incorrect id given
     with pytest.raises(ValueError):
-        Movie("", "Trees", 2011, 7.0, "comedy", 120, "very good")
+        Movie("", "Trees", 2011, 7.0, "comedy", "very good")
     
 def test_bad_name():
     with pytest.raises(ValueError):
-        Movie(2, "", 2011, 7.0, "comedy", 120, "very good")
+        Movie(2, "", 2011, 7.0, "comedy", "very good")
 
 def test_bad_year():
     with pytest.raises(ValueError):
-        Movie(2, "Trees", 1850, 7.0, "comedy", 120, "very good")
+        Movie(2, "Trees", 1850, 7.0, "comedy", "very good")
 
 def test_bad_rating():
     with pytest.raises(ValueError):
-        Movie(2, "Trees", 2011, 11.0, "comedy", 120, "very good")
+        Movie(2, "Trees", 2011, 11.0, "comedy", "very good")
         
 def test_bad_genre():
     with pytest.raises(ValueError):
-        Movie(2, "Trees", 2011, 7.0, False, 120, "very good")
-
-def test_bad_length():
-    with pytest.raises(ValueError):
-        Movie(2, "Trees", 2011, 7.0, "comedy", True, "very good")
+        Movie(2, "Trees", 2011, 7.0, False, "very good")
 
 def test_bad_review():
     with pytest.raises(ValueError):
-        Movie(2, "Trees", 2011, 7.0, "comedy", 120, 10)
+        Movie(2, "Trees", 2011, 7.0, "comedy", 10)
         
 def test_id_property(good_review):
     """
@@ -122,18 +114,6 @@ def test_genre_property(good_review):
     good_review.genre = "action"
     assert good_review._genre == "action"
 
-
-def test_length_property(good_review):
-    """
-    Tests whether length property exists
-    """
-   
-    assert hasattr(good_review, '_length')
-    assert type(good_review.__class__.length) == property
-    assert good_review._length == 120
-    good_review.length = 125
-    assert good_review._length == 125
-
 def test_review(good_review):
     """
     Tests whether review property exists
@@ -145,4 +125,4 @@ def test_review(good_review):
     assert good_review._review == "amazing movie"
 
 def test_movie_str(good_review):
-    assert str(good_review) == "Id: 2; Name: Trees; Year: 2011; Rating: 7.0; Genre: comedy; Review: very good; Length: 120"
+    assert str(good_review) == "Id: 2; Name: Trees; Year: 2011; Rating: 7.0; Genre: comedy; Review: very good;"
