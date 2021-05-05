@@ -5,8 +5,14 @@ class Movie:
         """ Initializes private attributes
 
         Args:
-            name (str): name of the player (cannot be empty)
-            score (int): score of the player (cannot be negative)
+            id (int): id of the specific movie (cannot be empty)
+            name (string): namne of the movie
+            year (int): release year of movie (must be 4 digit int)
+            rating (float): rating of movie out of 10 
+                    (must be a float value between 0 and 10)
+            genre (string): the genre of the movie
+            length (int): the length of the movie in minutes
+            review (string): short sentence review of movie
         
         Raises:
             ValueError: name is empty or not string, score is not integer or negative
@@ -20,11 +26,10 @@ class Movie:
         self.review = review_
         
     def __str__(self):
-        "Return a string with the name and score of specified user"
+        "Return a string with the id, name, year of release, rating, genre, review, and length of the movie"
         return f"Id: {self.id}; Name: {self.name}; Year: {self.year}; Rating: {self.rating}; Genre: {self.genre}; Review: {self.review}; Length: {self.length}"
         
     def __gt__(self, other):
-        "Return a boolean indicating if user score greater than opponent score"
         if type(other) is not type(self):
             raise TypeError("Unsupported type")
                 
