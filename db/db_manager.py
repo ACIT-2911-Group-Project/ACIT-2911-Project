@@ -29,21 +29,24 @@ class DatabaseManager:
 
 
     def selectAll(self):
+        ''' return a list of all movies '''
         self._cursor.execute("SELECT * FROM movies")
         return self._cursor.fetchall()
     
     def selectByName(self, name_):
+        ''' return a list of movies that match a given name '''
         field = [name_]
         self._cursor.execute("SELECT * FROM movies WHERE name like ?;", ('%'+name_+'%',))
         return self._cursor.fetchall()    
     
     def selectByYear(self, year_):
+        ''' return a list of movies that math a given year '''
         field = [year_]
         self._cursor.execute("SELECT * FROM movies WHERE year=?;", field)
         return self._cursor.fetchall()  
         
     def removeByName(self, name_):
-        #delete all entries in DB that match specified name
+        ''' delete all entries in DB that match specified name '''
         field = [name_]
         self._cursor.execute("DELETE FROM movies WHERE name=?;", field)
         self._db.commit() 
