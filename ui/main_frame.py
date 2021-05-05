@@ -62,7 +62,7 @@ class MainFrame(Frame):
       frame_reviews = Frame(self)
       frame_reviews.grid(row=3, column=0, columnspan=11, rowspan=10, pady=40)
 
-      columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review', 'Length', 'Maturity']
+      columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
       self._movie_tree_view = Treeview(frame_reviews, columns=columns, show="headings")
       self._movie_tree_view.column("id", width=30)
       for col in columns[1:]:

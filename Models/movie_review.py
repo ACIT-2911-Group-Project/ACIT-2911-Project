@@ -16,8 +16,7 @@ class Movie:
         self.year = year_
         self.rating = rating_
         self.genre = genre_
-        self.length = length_
-        self.review = review_
+
         
     def __str__(self):
         "Return a string with the name and score of specified user"
@@ -96,24 +95,5 @@ class Movie:
         else:
             self._review = value
     
-    @property
-    def length(self):
-        return self._length
-                
-    @length.setter
-    def length(self, value):
-        if type(value) is not int or value < 0:
-            raise ValueError("Invalid movie length.") 
-        else:
-            self._length = value
+
     
-    # @property
-    # def maturity(self):
-    #     return self._maturity
-                
-    # @maturity.setter
-    # def maturity(self, value):
-    #     if type(value) is not str or not value:
-    #         raise ValueError("Invalid movie maturity.") 
-    #     else:
-    #         self._maturity = value
