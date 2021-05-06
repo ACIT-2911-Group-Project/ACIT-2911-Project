@@ -18,11 +18,7 @@ class Movie:
         self.year = year_
         self.rating = rating_
         self.genre = genre_
-<<<<<<< Updated upstream
-
-=======
         self.review = review_
->>>>>>> Stashed changes
         
     def __str__(self):
         #Return a string with the id, name, year of release, rating, genre, review, and length of the movie
@@ -111,7 +107,6 @@ class Movie:
         if type(value) is not str or not value:
             raise ValueError("Invalid movie review.")
         else:
-<<<<<<< Updated upstream
             self._review = value
             
     @property
@@ -128,6 +123,3 @@ class Movie:
             self._length = value
 
     
-=======
-            self._review = value
->>>>>>> Stashed changes

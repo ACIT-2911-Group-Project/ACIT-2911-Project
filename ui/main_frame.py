@@ -16,6 +16,7 @@ class MainFrame(Frame):
     # Define string variables for text entry fields
     self._movie_name_text = StringVar()
     self._movie_year_text = StringVar()
+    self._movie_rating_text = StringVar()
 
     self.pack()
     
@@ -24,11 +25,11 @@ class MainFrame(Frame):
     lbl_search = Label(self, text='Search by name:', font=('bold', 12), pady=15)
     lbl_search.grid(row=0, column=0, sticky="W")
 
-    moviename_search_entry = Entry(self, textvariable=self._movie_name_text)
-    moviename_search_entry.grid(row=0, column=1)
+    moviename_search_entry = Entry(self, width=60, textvariable=self._movie_name_text)
+    moviename_search_entry.grid(row=0, column=2)
     
     search_btn = Button(self, text='Search', width=12, command=self.btnClickSearchByName)
-    search_btn.grid(row=0, column=2)       
+    search_btn.grid(row=0, column=6)       
 
     # Search by Movie Year
     # Create a label, an entry field, and a button
@@ -37,38 +38,49 @@ class MainFrame(Frame):
     year_label.grid(row=1, column=0, sticky="W")
     
     year_entry = Entry(self, textvariable=self._movie_year_text)
-    year_entry.grid(row=1, column=1)
+    year_entry.grid(row=2, column=0)
     
     search_btn2 = Button(self, text='Search', width=12, command=self.btnClickSearchByYear)
-    search_btn2.grid(row=1, column=2)
+    search_btn2.grid(row=3, column=0)
+    
+    # Search by Movie Rating
+    # Create a label, an entry field, and a button
+    
+    rating_label = Label(self, text='Search by rating:', font=('bold', 12), pady=15)
+    rating_label.grid(row=1, column=6, sticky="W")
+    
+    rating_entry = Entry(self, textvariable=self._movie_rating_text)
+    rating_entry.grid(row=2, column=6)
+    
+    search_btn3 = Button(self, text='Search', width=12, command=self.btnClickSearchByRating)
+    search_btn3.grid(row=3, column=6)
     
     # Create a new frame for the Insert, Update and Delete buttons
     frame_btns = Frame(self)
-    frame_btns.grid(row=2, column=0, columnspan=3, pady=40)
+    frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
 
     add_btn = Button(frame_btns, text='Add Review', width=12, padx=15, command=self.addReview)
     add_btn.grid(row=0, column=0, sticky="W", padx=15)
 
     remove_btn = Button(frame_btns, text='Remove Review', width=12, padx=15, command=self.deleteReview)
-    remove_btn.grid(row=0, column=1, padx=15)
+    remove_btn.grid(row=0, column=3, padx=15)
 
     update_btn = Button(frame_btns, text='Update Review', width=12, padx=15, command=self.updateReview)
-    update_btn.grid(row=0, column=2, padx=15)
+    update_btn.grid(row=0, column=6, padx=15)
 
     # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearText)
     # clear_btn.grid(row=0, column=3)      
     
     # Create a frame for the results
     frame_reviews = Frame(self)
-    frame_reviews.grid(row=3, column=0, columnspan=11, rowspan=10, pady=40)
+    frame_reviews.grid(row=5, column=0, columnspan=11, rowspan=10, pady=40)
 
-<<<<<<< Updated upstream
     # Create a column for the result
     columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
     self._movie_tree_view = Treeview(frame_reviews, columns=columns, show="headings")
     self._movie_tree_view.column("id", width=30)
     for col in columns[1:]:
-      self._movie_tree_view.column(col, width=90)
+      self._movie_tree_view.column(col, width=130)
       self._movie_tree_view.heading(col, text=col)
           
     # create the list of the tree view of the movie     
@@ -78,21 +90,6 @@ class MainFrame(Frame):
     scrollbar.configure(command=self._movie_tree_view.yview)
     scrollbar.pack(side="right", fill="y")
     self._movie_tree_view.config(yscrollcommand=scrollbar.set)          
-=======
-      columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
-      self._movie_tree_view = Treeview(frame_reviews, columns=columns, show="headings")
-      self._movie_tree_view.column("id", width=30)
-      for col in columns[1:]:
-        self._movie_tree_view.column(col, width=90)
-        self._movie_tree_view.heading(col, text=col)
-            
-      self._movie_tree_view.bind('<<TreeviewSelect>>', self.select_movie)
-      self._movie_tree_view.pack(side="left", fill="y")
-      scrollbar = Scrollbar(frame_reviews, orient='vertical')
-      scrollbar.configure(command=self._movie_tree_view.yview)
-      scrollbar.pack(side="right", fill="y")
-      self._movie_tree_view.config(yscrollcommand=scrollbar.set)          
->>>>>>> Stashed changes
 
           
   def btnClickSearchByName(self):
@@ -110,6 +107,12 @@ class MainFrame(Frame):
     # create a button to seach for the movie by name
     movie_year = int(self._movie_year_text.get())  
     movie_reviews = DataAccessHelper().queryByMovieYear(movie_year)
+    self.populate_list(movie_reviews)
+    
+  def btnClickSearchByRating(self):
+  # create a button to seach for the movie by name
+    movie_rating = int(self._movie_rating_text.get())  
+    movie_reviews = DataAccessHelper().queryByMovieRating(movie_rating)
     self.populate_list(movie_reviews)
 
   def populate_list(self, movie_reviews):

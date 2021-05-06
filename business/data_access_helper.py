@@ -14,6 +14,12 @@ class DataAccessHelper():
     db.close()
     return movie_reviews
   
+  def queryByMovieRating(self, rating):
+    db = DatabaseManager("flicks.db")
+    movie_reviews = db.selectByRating(rating)
+    db.close()
+    return movie_reviews
+  
   def queryAll(self):    
     db = DatabaseManager("flicks.db")
     movie_reviews = db.selectAll()
