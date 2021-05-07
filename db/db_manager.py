@@ -5,12 +5,12 @@ class DatabaseManager:
         self._db = sqlite3.connect(filename)
         self._cursor = self._db.cursor()
         
-        #check if table exist
+        #Check if table exists
         self._cursor.execute('SELECT name from sqlite_master where type="table"')
         res = self._cursor.fetchone()
         
         if not res or "movies" not in res:
-            # if movies table does not exist, it will be created
+            #If movies table does not exist, it will be created
             self._cursor.execute("CREATE TABLE IF NOT EXISTS movies ( \
                 id INTEGER PRIMARY KEY, \
                 name TEXT NOT NULL, \
@@ -22,40 +22,39 @@ class DatabaseManager:
             
             
     def add(self, name_, year_, rating_, genre_, review_):
-        "add a new movie to db"
+        #Add a new movie to db
         fields = [name_, year_, rating_, genre_, review_]
         self._cursor.execute("INSERT INTO movies ('name', 'year', 'rating', 'genre', 'review', 'length') VALUES (?,?,?,?,?,?,?);", fields)
         self._db.commit()
 
     def selectAll(self):
-        ''' return a list of all movies '''
+        #Return a list of all movies
         self._cursor.execute("SELECT * FROM movies")
         return self._cursor.fetchall()
     
     def selectByName(self, name_):
-        ''' return a list of movies that match a given name '''
+        #Return a list of movies that match a given name
         field = [name_]
         self._cursor.execute("SELECT * FROM movies WHERE name like ?;", ('%'+name_+'%',))
         return self._cursor.fetchall()    
     
     def selectByYear(self, year_):
-        ''' return a list of movies that math a given year '''
+        #Return a list of movies that match a given year
         field = [year_]
         self._cursor.execute("SELECT * FROM movies WHERE year=?;", field)
         return self._cursor.fetchall()
     
     def selectByRating(self, rating_):
-        ''' return a list of movies that are above certain rating '''
+        #Return a list of movies that are above certain rating
         field = [rating_]
         self._cursor.execute("SELECT * FROM movies WHERE rating>?;", field)
         return self._cursor.fetchall()    
         
     def removeByName(self, name_):
-        ''' delete all entries in DB that match specified name '''
+        #Delete all entries in DB that match specified name
         field = [name_]
         self._cursor.execute("DELETE FROM movies WHERE name=?;", field)
         self._db.commit() 
         
     def close(self):
         self._db.close()
-      

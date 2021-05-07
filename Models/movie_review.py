@@ -7,7 +7,7 @@ class Movie:
         Args:
             id (int): id of the specific movie (cannot be empty)
             name (string): namne of the movie
-            year (int): release year of movie (must be 4 digit int)
+            year (int): release year of movie (must be larger than 1890)
             rating (float): rating of movie out of 10 (must be a float value between 0 and 10)
             genre (string): the genre of the movie
             review (string): short sentence review of movie
@@ -21,11 +21,11 @@ class Movie:
         self.review = review_
         
     def __str__(self):
-        #Return a string with the id, name, year of release, rating, genre, review, and length of the movie
+        #Return a string with the id, name, year of release, rating, genre, review of the movie
         return f"Id: {self.id}; Name: {self.name}; Year: {self.year}; Rating: {self.rating}; Genre: {self.genre}; Review: {self.review};"
         
     def __gt__(self, other):
-        #Return Boolean whether self rating greater than opponent
+        #Return boolean whether self rating greater than opponent
         if type(other) is not type(self):
             raise TypeError("Unsupported type")
                 
@@ -108,18 +108,3 @@ class Movie:
             raise ValueError("Invalid movie review.")
         else:
             self._review = value
-            
-    @property
-    def length(self):
-        # getter for movie length in minutes 
-        return self._length
-                
-    @length.setter
-    def length(self, value):
-        # setter for movie length in minutes 
-        if type(value) is not int or value < 0:
-            raise ValueError("Invalid movie length.") 
-        else:
-            self._length = value
-
-    

@@ -9,19 +9,19 @@ from tkinter.ttk import Treeview
 class MainFrame(Frame):
   
   def __init__(self, parent):
-    # initialize the main frame
+    #Initialize the main frame
     Frame.__init__(self, parent)
     
     self._parent = parent    
-    # Define string variables for text entry fields
+    #Define string variables for text entry fields
     self._movie_name_text = StringVar()
     self._movie_year_text = StringVar()
     self._movie_rating_text = StringVar()
 
     self.pack()
     
-    # Search by Movie name
-    # Create a label, an entry field, and a button      
+    #Search by Movie name
+    #Create a label, an entry field, and a button      
     lbl_search = Label(self, text='Search by name:', font=('bold', 12), pady=15)
     lbl_search.grid(row=0, column=0, sticky="W")
 
@@ -31,9 +31,8 @@ class MainFrame(Frame):
     search_btn = Button(self, text='Search', width=12, command=self.btnClickSearchByName)
     search_btn.grid(row=0, column=6)       
 
-    # Search by Movie Year
-    # Create a label, an entry field, and a button
-    
+    #Search by Movie year
+    #Create a label, an entry field, and a button
     year_label = Label(self, text='Search by year:', font=('bold', 12), pady=15)
     year_label.grid(row=1, column=0, sticky="W")
     
@@ -43,9 +42,8 @@ class MainFrame(Frame):
     search_btn2 = Button(self, text='Search', width=12, command=self.btnClickSearchByYear)
     search_btn2.grid(row=3, column=0)
     
-    # Search by Movie Rating
-    # Create a label, an entry field, and a button
-    
+    #Search by Movie rating
+    #Create a label, an entry field, and a button
     rating_label = Label(self, text='Search by rating:', font=('bold', 12), pady=15)
     rating_label.grid(row=1, column=6, sticky="W")
     
@@ -55,7 +53,7 @@ class MainFrame(Frame):
     search_btn3 = Button(self, text='Search', width=12, command=self.btnClickSearchByRating)
     search_btn3.grid(row=3, column=6)
     
-    # Create a new frame for the Insert, Update and Delete buttons
+    #Create a new frame for the Insert, Update and Delete buttons
     frame_btns = Frame(self)
     frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
 
@@ -71,11 +69,11 @@ class MainFrame(Frame):
     # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearText)
     # clear_btn.grid(row=0, column=3)      
     
-    # Create a frame for the results
+    #Create a frame for the results
     frame_reviews = Frame(self)
     frame_reviews.grid(row=5, column=0, columnspan=11, rowspan=10, pady=40)
 
-    # Create a column for the result
+    #Create a column for the result
     columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
     self._movie_tree_view = Treeview(frame_reviews, columns=columns, show="headings")
     self._movie_tree_view.column("id", width=30)
@@ -83,7 +81,7 @@ class MainFrame(Frame):
       self._movie_tree_view.column(col, width=130)
       self._movie_tree_view.heading(col, text=col)
           
-    # create the list of the tree view of the movie     
+    #Create the list of the tree view of the movie     
     self._movie_tree_view.bind('<<TreeviewSelect>>', self.select_movie)
     self._movie_tree_view.pack(side="left", fill="y")
     scrollbar = Scrollbar(frame_reviews, orient='vertical')
@@ -93,9 +91,9 @@ class MainFrame(Frame):
 
           
   def btnClickSearchByName(self):
-    # create a button to seach for the movie by name
+    #Function to seach for the movie by name
     movie_name = self._movie_name_text.get()      
-    # movie_reviews = DataAccessHelper().queryByMovieName(movie_name)
+    #movie_reviews = DataAccessHelper().queryByMovieName(movie_name)
     if not movie_name:
       movie_reviews = DataAccessHelper().queryAll()
     else:
@@ -104,42 +102,41 @@ class MainFrame(Frame):
     self.populate_list(movie_reviews)
       
   def btnClickSearchByYear(self):
-    # create a button to seach for the movie by name
+    #Function to seach for the movie by name
     movie_year = int(self._movie_year_text.get())  
     movie_reviews = DataAccessHelper().queryByMovieYear(movie_year)
     self.populate_list(movie_reviews)
     
   def btnClickSearchByRating(self):
-  # create a button to seach for the movie by name
+  #Function to seach for the movie by name
     movie_rating = int(self._movie_rating_text.get())  
     movie_reviews = DataAccessHelper().queryByMovieRating(movie_rating)
     self.populate_list(movie_reviews)
 
   def populate_list(self, movie_reviews):
-    # Displays the list of movies from the tree view
+    #Display the list of movies from the tree view
     self.clear_list()
         
     for row in movie_reviews:
         self._movie_tree_view.insert('', 'end', values=row)
           
   def clear_list(self):
-    # clear the list of the movie tree view
+    #Clear the list of the movie tree view
     for i in self._movie_tree_view.get_children():
         self._movie_tree_view.delete(i)
             
   def select_movie(self):
-    # select the movie
+    #Select the movie
     pass
       
   def addReview(self):
-    # add review of the movie
+    #Add review of the movie
     addWindows = Toplevel(self._parent)
     
-      
   def deleteReview(self):
-    # Delete the review
+    #Delete the review
     pass
 
   def updateReview(self):
-    # update the review
+    #Update the review
     pass
