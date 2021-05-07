@@ -17,14 +17,14 @@ class DatabaseManager:
                 year INTEGER NOT NULL, \
                 rating INTEGER NOT NULL, \
                 genre TEXT NOT NULL, \
-                review TEXT NOT NULL")
+                review TEXT NOT NULL)")
             self._db.commit()
             
             
     def add(self, name_, year_, rating_, genre_, review_):
         #Add a new movie to db
         fields = [name_, year_, rating_, genre_, review_]
-        self._cursor.execute("INSERT INTO movies ('name', 'year', 'rating', 'genre', 'review', 'length') VALUES (?,?,?,?,?,?,?);", fields)
+        self._cursor.execute("INSERT INTO movies ('name', 'year', 'rating', 'genre', 'review') VALUES (?,?,?,?,?);", fields)
         self._db.commit()
 
     def selectAll(self):
