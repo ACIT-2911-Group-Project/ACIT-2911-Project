@@ -1,5 +1,6 @@
 import pytest
 import sqlite3
+from Models.movie_review import Movie
 from db.db_manager import DatabaseManager
 
 #Must delete test_flicks.db file and run tests
@@ -26,29 +27,60 @@ def setup_database():
     conn.commit()
     db = DatabaseManager("test_flicks.db")
 
-def test_add():
-    #Test if db manager add function working
+def test_success_add():
     db = DatabaseManager("test_flicks.db")
     
-    db.add("Trees", 1999, 9.3, "Comedy", "Great")
-    db.add("Grass", 2010, 7.5, "Drama", "Average")
+    #test insert By Fields
+    db.insertByFields("Trees", 1999, 9.3, "Comedy", "Great")
+    db.insertByFields("Grass", 2010, 7.5, "Drama", "Average")
     
     results = db.selectAll()
     assert len(results) == 2
-
-# def test_selectByName():
-#     #Test if db manager is selecting movie review by name
-#     db = DatabaseManager("test_flicks.db")
     
-#     result = db.selectByName("Trees")
-
-#     assert result.name == "Trees"
-
-def test_removeByName():
-    #Test if db manager delete movie review from database
-    db = DatabaseManager("test_flicks.db")
-    
-    db.removeByName("Trees")
+    #test insert By object
+    exa1 = Movie(3, "Trees", 2011, 7.0, "comedy", "very good")
+    db.insertByObject(exa1)
+    exa2 = Movie(4, "Spiderman", 2012, 9.0, "action", "amazing")
+    db.insertByObject(exa2)
 
     results = db.selectAll()
-    assert len(results) == 1
+    assert len(results) == 4
+
+def test_fail_add():
+    #test all 5 incorrect fields - if each one returns the right error
+    db = DatabaseManager("test_flicks.db")
+    #test invalid id - should return Value error if not int
+    with pytest.raises(ValueError):
+        db.insertByObject(Movie("", "Trees", 2011, 7.0, "comedy", "very good"))
+    
+    #test invalid name - should return Value error if not str or if empty
+    with pytest.raises(ValueError):
+        db.insertByObject(Movie(6, 2, 2011, 7.0, "comedy", "very good"))
+
+    #test invalid year - should return Value error if year is less 1890
+    with pytest.raises(ValueError):
+        db.insertByObject(Movie(7, "Trees", 1888, 7.0, "comedy", "very good"))
+
+    #test invalid rating - should return Value error if not float or not between 0.0 - 10.0
+    with pytest.raises(ValueError):
+        #int given as rating instead of float
+        db.insertByObject(Movie(8, "Trees", 2011, 7, "comedy", "very good"))
+        #float given that is not within 0.0 - 10.0 range
+        db.insertByObject(Movie(9, "Grass", 2011, 11.0, "comedy", "very good"))
+
+    #test invalid genre - should return Value error if not str or if empty
+    with pytest.raises(ValueError):
+        db.insertByObject(Movie(10, "Trees", 2011, 7.0, True, "very good"))
+        
+    #test invalid review - should return Value error if not str or if empty
+    with pytest.raises(ValueError):
+        db.insertByObject(Movie(11, "Trees", 2011, 7.0, "drama", False))
+
+# def test_removeByName():
+#     #Test if db manager delete movie review from database
+#     db = DatabaseManager("test_flicks.db")
+    
+#     db.removeByName("Trees")
+
+#     results = db.selectAll()
+#     assert len(results) == 1

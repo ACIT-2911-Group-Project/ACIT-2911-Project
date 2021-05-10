@@ -25,3 +25,15 @@ class DataAccessHelper():
     movie_reviews = db.selectAll()
     db.close()
     return movie_reviews
+  
+  def insertMovieReview(self, movie_review):
+    db = DatabaseManager("flicks.db")
+    db.insertByObject(movie_review)
+    db.close() 
+    
+  def removeMovieReview(self, movie_review_name):
+    db = DatabaseManager("flicks.db")
+    db.removeByName(movie_review_name)
+    db.close()
+    
+    

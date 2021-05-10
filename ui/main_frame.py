@@ -1,9 +1,10 @@
+from ui.insert_frame import InsertFrame
 from business.data_access_helper import DataAccessHelper
 from db.db_manager import DatabaseManager
 from Models.movie_review import Movie
 
 from tkinter import *
-from tkinter.ttk import Treeview
+from tkinter.ttk import Combobox, Treeview
 
 
 class MainFrame(Frame):
@@ -127,11 +128,14 @@ class MainFrame(Frame):
             
   def select_movie(self):
     #Select the movie
-    pass
+    return self.name
       
   def addReview(self):
     #Add review of the movie
-    addWindows = Toplevel(self._parent)
+    dlg = InsertFrame(self._parent)    
+    if dlg is not False:
+      movie_reviews = DataAccessHelper().queryAll()
+      self.populate_list(movie_reviews)
     
   def deleteReview(self):
     #Delete the review
