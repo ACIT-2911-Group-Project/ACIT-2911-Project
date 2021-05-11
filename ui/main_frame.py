@@ -6,6 +6,7 @@ from Models.movie_review import Movie
 from tkinter import *
 from tkinter.ttk import Combobox, Treeview
 
+selected_movie_review = ""
 
 class MainFrame(Frame):
   
@@ -55,24 +56,24 @@ class MainFrame(Frame):
     search_btn3.grid(row=3, column=6)
     
     #Create a new frame for the Insert, Update and Delete buttons
-    frame_btns = Frame(self)
-    frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
+    # frame_btns = Frame(self)
+    # frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
 
-    add_btn = Button(frame_btns, text='Add Review', width=12, padx=15, command=self.addReview)
-    add_btn.grid(row=0, column=0, sticky="W", padx=15)
+    add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview)
+    add_btn.grid(row=8, column=0, sticky="W", padx=15)
 
-    remove_btn = Button(frame_btns, text='Remove Review', width=12, padx=15, command=self.deleteReview)
-    remove_btn.grid(row=0, column=3, padx=15)
+    remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview)
+    remove_btn.grid(row=8, column=1, padx=15)
 
-    update_btn = Button(frame_btns, text='Update Review', width=12, padx=15, command=self.updateReview)
-    update_btn.grid(row=0, column=6, padx=15)
+    update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview)
+    update_btn.grid(row=8, column=2, sticky="E", padx=15)
 
     # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearText)
     # clear_btn.grid(row=0, column=3)      
     
     #Create a frame for the results
     frame_reviews = Frame(self)
-    frame_reviews.grid(row=5, column=0, columnspan=11, rowspan=10, pady=40)
+    frame_reviews.grid(row=10, column=0, columnspan=11, rowspan=10, pady=40)
 
     #Create a column for the result
     columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
@@ -126,9 +127,12 @@ class MainFrame(Frame):
     for i in self._movie_tree_view.get_children():
         self._movie_tree_view.delete(i)
             
-  def select_movie(self):
+  def select_movie(self, event):
     #Select the movie
-    return self.name
+    global selected_movie_review
+    index = self._movie_tree_view.selection()[0]
+    selected_movie_review = self._movie_tree_view.item(index)["values"]
+    print(selected_movie_review[0])
       
   def addReview(self):
     #Add review of the movie
