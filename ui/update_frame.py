@@ -5,20 +5,19 @@ from tkinter import *
 from tkinter.ttk import Combobox, Treeview
 
 
-class InsertFrame(Frame):
+class UpdateFrame(Frame):
   
   def __init__(self, parent):
     
     Frame.__init__(self, parent)
     
     self._parent = parent
-        
+    
+    # self._movieEntry = movie_entry
+    
     self._insertWindow = Toplevel(self._parent)
-    self._insertWindow.transient(parent)
-    self._insertWindow.grab_set()    
     
-    
-    self._insertWindow.title("Insert Movie Review")
+    self._insertWindow.title("Update Movie Review")
     self._insertWindow.geometry('350x300')
     
     self._movie_name = StringVar()
@@ -62,7 +61,7 @@ class InsertFrame(Frame):
     self._entry_review = Text(self._insertWindow, width=40, height=5, padx=5)
     self._entry_review.grid(row=7, column=0, columnspan=2, sticky="W")
     
-    insert_btn = Button(self._insertWindow, text='Add Review', width=12, command=self.btnClickInsertReview)
+    insert_btn = Button(self._insertWindow, text='Update Review', width=12, command=self.btnClickUpdateReview)
     insert_btn.grid(row=10, column=0, sticky="W", padx=5, pady=15)
 
     cancel_btn = Button(self._insertWindow, text='Cancel', width=12, command=self.btnClickCancel)
@@ -70,30 +69,25 @@ class InsertFrame(Frame):
 
     #self.pack()
     self.pack(fill="x", padx=20, pady=20)
-
+                  
+    self._insertWindow.mainloop()
       
-  def btnClickInsertReview(self):
+  def btnClickUpdateReview(self):
     try:
-      new_review = Movie(0, 
+      updated_review = Movie(0, 
                         self._movie_name.get(), 
                         int(self._movie_year.get()), 
                         float(self._movie_rating.get()), 
                         self._movie_genre.get(),
                         self._entry_review.get('1.0', 'end-1c'))
-       
-      DataAccessHelper().insertMovieReview(new_review)
-      
+      print(self._movieEntry)
+    #   DataAccessHelper().updateMovieReview(updated_review)
       self._insertWindow.destroy()
       
-      
-      
+
     except Exception as e:
-      print(e)
+      return False
     
-    finally:
-      self._insertWindow.destroy()
-      
-      
   def btnClickCancel(self):
       self._insertWindow.destroy()
     
