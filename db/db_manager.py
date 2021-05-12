@@ -56,11 +56,11 @@ class DatabaseManager:
         self._cursor.execute("SELECT * FROM movies WHERE rating>?;", field)
         return self._cursor.fetchall()    
         
-    def removeByName(self, name_):
-        #Delete all entries in DB that match specified name
-        field = [name_]
-        self._cursor.execute("DELETE FROM movies WHERE name=?;", field)
-        self._db.commit() 
+    def removeByID(self, id_):
+        #Delete all entries in DB that match specified id
+        field = [id_]
+        self._cursor.execute("DELETE FROM movies WHERE id=?;", field)
+        self._db.commit()
         
     def close(self):
         self._db.close()

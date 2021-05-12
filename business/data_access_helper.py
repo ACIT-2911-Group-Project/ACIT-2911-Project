@@ -31,9 +31,9 @@ class DataAccessHelper():
     db.insertByObject(movie_review)
     db.close() 
     
-  def removeMovieReview(self, movie_review_name):
+  def removeMovieReview(self, movie_review_id):
     db = DatabaseManager("flicks.db")
-    db.removeByName(movie_review_name)
+    db.removeByID(movie_review_id)
     db.close()
     
     

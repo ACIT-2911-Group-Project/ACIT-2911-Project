@@ -136,14 +136,21 @@ class MainFrame(Frame):
       
   def addReview(self):
     #Add review of the movie
-    dlg = InsertFrame(self._parent)    
+    #Add review of the movie
+    dlg = InsertFrame(self._parent)
     if dlg is not False:
       movie_reviews = DataAccessHelper().queryAll()
       self.populate_list(movie_reviews)
     
   def deleteReview(self):
     #Delete the review
-    pass
+    global selected_movie_review
+    #get id of movie to delete - movie review selected by user
+    movie_to_del = selected_movie_review[0]
+    DataAccessHelper().removeMovieReview(movie_to_del)
+    movie_reviews = DataAccessHelper().queryAll()
+    self.populate_list(movie_reviews)
+    
 
   def updateReview(self):
     #Update the review

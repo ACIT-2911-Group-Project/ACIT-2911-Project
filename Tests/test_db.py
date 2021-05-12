@@ -30,21 +30,15 @@ def setup_database():
 def test_success_add():
     db = DatabaseManager("test_flicks.db")
     
-    #test insert By Fields
-    db.insertByFields("Trees", 1999, 9.3, "Comedy", "Great")
-    db.insertByFields("Grass", 2010, 7.5, "Drama", "Average")
-    
-    results = db.selectAll()
-    assert len(results) == 2
     
     #test insert By object
-    exa1 = Movie(3, "Trees", 2011, 7.0, "comedy", "very good")
+    exa1 = Movie(1, "Lemon", 2011, 7.0, "comedy", "very good")
     db.insertByObject(exa1)
-    exa2 = Movie(4, "Spiderman", 2012, 9.0, "action", "amazing")
+    exa2 = Movie(2, "Spiderman", 2012, 9.0, "action", "amazing")
     db.insertByObject(exa2)
 
     results = db.selectAll()
-    assert len(results) == 4
+    assert len(results) == 2
 
 def test_fail_add():
     #test all 5 incorrect fields - if each one returns the right error
@@ -76,11 +70,13 @@ def test_fail_add():
     with pytest.raises(ValueError):
         db.insertByObject(Movie(11, "Trees", 2011, 7.0, "drama", False))
 
-# def test_removeByName():
-#     #Test if db manager delete movie review from database
-#     db = DatabaseManager("test_flicks.db")
+def test_remove_movie_review():
+    #Test if db manager delete movie review from database
+    #starts with 4 movie review entries from previous tests
+    db = DatabaseManager("test_flicks.db")
     
-#     db.removeByName("Trees")
+    #success
+    db.removeByID(2)
 
-#     results = db.selectAll()
-#     assert len(results) == 1
+    results = db.selectAll()
+    assert len(results) == 1
