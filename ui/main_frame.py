@@ -60,13 +60,13 @@ class MainFrame(Frame):
     # frame_btns = Frame(self)
     # frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
 
-    add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview, bg='#2ECC71', fg='white')
+    add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview)
     add_btn.grid(row=5, column=0, sticky="W")
 
-    remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview, bg='#E74C3C', fg='white')
+    remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview)
     remove_btn.grid(row=5, column=1)
 
-    update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview, bg='#F1C40F', fg='white')
+    update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview)
     update_btn.grid(row=5, column=2, sticky="E")
 
     # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearText)
