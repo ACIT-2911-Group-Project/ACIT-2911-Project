@@ -104,11 +104,11 @@ class MainFrame(Frame):
     
     self._movie_tree_view.config(yscrollcommand=scrollbar.set)          
 
-    clear_btn = Button(self, text='Clear Fields', width=12, padx=15, command=self.clearFields)
-    clear_btn.grid(row=22, column=0, sticky="W", pady=10)
+    # clear_btn = Button(self, text='Clear Fields', width=12, padx=15, command=self.clearFields)
+    # clear_btn.grid(row=22, column=0, sticky="W", pady=10)
 
-    exit_btn = Button(self, text='Exit', width=12, padx=15, command=self._parent.destroy)
-    exit_btn.grid(row=22, column=2, sticky="E", pady=10)
+    # exit_btn = Button(self, text='Exit', width=12, padx=15, command=self._parent.destroy)
+    # exit_btn.grid(row=22, column=2, sticky="E", pady=10)
     
           
   def btnClickSearchByName(self):
@@ -191,6 +191,4 @@ class MainFrame(Frame):
   
   def clearFields(self):
     #clears the fields where user has inserted data 
-    self.moviename_search_entry.delete(0, END)
-    self.year_entry.delete(0, END)
-    self.rating_entry.delete(0, END)
+    pass
