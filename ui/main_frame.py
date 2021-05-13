@@ -60,7 +60,7 @@ class MainFrame(Frame):
     # frame_btns = Frame(self)
     # frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
 
-    add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview)
+    add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview, bg='#2ECC71', fg='white')
     add_btn.grid(row=5, column=0, sticky="W")
 
     remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview)
