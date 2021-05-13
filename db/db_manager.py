@@ -62,5 +62,10 @@ class DatabaseManager:
         self._cursor.execute("DELETE FROM movies WHERE id=?;", field)
         self._db.commit()
         
+    def updateByObject(self, movie_):
+        #Update entry in DB that matches specified id
+        field = [movie_.name, movie_.year, movie_.rating, movie_.genre, movie_.review, movie_.id]
+        self._cursor.execute("UPDATE movies SET name=?, year=?, rating=?, genre=?, review=? WHERE id=?", field)
+        
     def close(self):
         self._db.close()

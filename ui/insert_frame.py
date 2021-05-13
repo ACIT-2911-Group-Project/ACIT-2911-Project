@@ -14,6 +14,9 @@ class InsertFrame(Frame):
     self._parent = parent
         
     self._insertWindow = Toplevel(self._parent)
+    self._insertWindow.transient(parent)
+    self._insertWindow.grab_set()    
+    
     
     self._insertWindow.title("Insert Movie Review")
     self._insertWindow.geometry('350x300')
@@ -67,8 +70,7 @@ class InsertFrame(Frame):
 
     #self.pack()
     self.pack(fill="x", padx=20, pady=20)
-                  
-    self._insertWindow.mainloop()
+
       
   def btnClickInsertReview(self):
     try:
@@ -86,8 +88,12 @@ class InsertFrame(Frame):
       
       
     except Exception as e:
-      return False
+      print(e)
     
+    finally:
+      self._insertWindow.destroy()
+      
+      
   def btnClickCancel(self):
       self._insertWindow.destroy()
     
