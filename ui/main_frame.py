@@ -6,7 +6,7 @@ from db.db_manager import DatabaseManager
 from Models.movie_review import Movie
 
 from tkinter import *
-from tkinter.ttk import Combobox, Treeview
+from tkinter.ttk import Combobox, Style, Treeview
 
 selected_movie_review = ""
 
@@ -72,7 +72,7 @@ class MainFrame(Frame):
     remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview, bg='#E74C3C', fg='white')
     remove_btn.grid(row=5, column=1)
 
-    update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview, bg='#F1C40F', fg='white')
+    update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview, bg='#B7AC44', fg='white')
     update_btn.grid(row=5, column=2, sticky="E")
 
     # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearText)
