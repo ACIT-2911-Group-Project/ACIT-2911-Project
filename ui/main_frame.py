@@ -20,7 +20,8 @@ class MainFrame(Frame):
     background = "#000C66"
     parent.configure(bg=background)
     self.configure(bg=background)
-    self._parent = parent  
+    
+    self._parent = parent
 
     #Define string variables for text entry fields
     self._movie_name_text = StringVar()
