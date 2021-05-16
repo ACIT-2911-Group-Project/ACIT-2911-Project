@@ -54,7 +54,7 @@ class UpdateFrame(Frame):
     lbl_genre.grid(row=3, column=0, sticky="W")
 
     genres=('Horror', 'Action', 'Romance', 'Comedy', 'Science Fiction', 'Drama', 'Thriller', 'Documentary', 'Western', 'Musical', 'Crime', 'Fiction', 'Romantic Comedy', 'Music', 'War', 'Adventure', 'Epic')
-    cbox_genre = Combobox(self._insertWindow, width=30, textvariable=self._movie_genre)
+    cbox_genre = Combobox(self._insertWindow, width=27, textvariable=self._movie_genre)
     cbox_genre.grid(row=3, column=1, ) 
     cbox_genre['values'] = sorted(genres)
     cbox_genre['state'] = 'readonly'  # normal    
