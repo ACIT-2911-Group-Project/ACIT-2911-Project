@@ -7,6 +7,7 @@ from Models.movie_review import Movie
 
 from tkinter import *
 from tkinter.ttk import Combobox, Style, Treeview
+from tkinter.messagebox import showerror, showwarning, showinfo
 
 selected_movie_review = ""
 
@@ -175,17 +176,32 @@ class MainFrame(Frame):
     if selected_movie_review != "":
       movie_to_del = selected_movie_review[0]
       DataAccessHelper().removeMovieReview(movie_to_del)
-    self.refreshTreeView()
+      self.refreshTreeView()
+    else:
+      showerror(title='Deletion Error', message='Please select a row you want to delete')
+
+    selected_movie_review=''   
     
   def updateReview(self):
     #Update the review
     global selected_movie_review
-    dlg = UpdateFrame(self._parent)
-    if dlg is not False:
-      movie_reviews = DataAccessHelper().queryAll()
-    self.populate_list(movie_reviews)
+    if selected_movie_review != '':
+
+      movie_review = Movie(selected_movie_review[0], 
+                        selected_movie_review[1], 
+                        int(selected_movie_review[2]), 
+                        float(selected_movie_review[3]), 
+                        selected_movie_review[4],
+                        selected_movie_review[5])
+        
+      dlg = UpdateFrame(self._parent, movie_review) 
+      self._parent.wait_window(dlg._updateWindow)
+      self.refreshTreeView()
+    else:
+      showerror(title='Update Error', message='Please select a row you want to update')
+      
     
-    print(selected_movie_review)
+    selected_movie_review=''        
 
   def refreshTreeView(self, movie_reviews=None):
     #refresh list of movie reviews - called after CRUD actions or user searchs for review

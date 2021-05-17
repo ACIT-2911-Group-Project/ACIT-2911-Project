@@ -39,5 +39,5 @@ class DataAccessHelper():
   def updateMovieReview(self, movie_review):
     db = DatabaseManager("flicks.db")
     db.updateByObject(movie_review)
-    db.close
+    db.close()
     

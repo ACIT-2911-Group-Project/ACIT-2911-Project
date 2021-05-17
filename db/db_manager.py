@@ -66,6 +66,7 @@ class DatabaseManager:
         #Update entry in DB that matches specified id
         field = [movie_.name, movie_.year, movie_.rating, movie_.genre, movie_.review, movie_.id]
         self._cursor.execute("UPDATE movies SET name=?, year=?, rating=?, genre=?, review=? WHERE id=?", field)
+        self._db.commit()
         
     def close(self):
         self._db.close()

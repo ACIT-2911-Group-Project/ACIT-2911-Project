@@ -42,19 +42,19 @@ class InsertFrame(Frame):
     entry_name = Entry(self._insertWindow, width=30, textvariable=self._movie_name)
     entry_name.grid(row=0, column=1)
     
-    lbl_year = Label(self._insertWindow, text='Year:', font=('bold', 12), padx=5, pady=5,fg=lbl_color, bg=background)
+    lbl_year = Label(self._insertWindow, text='Year:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_year.grid(row=1, column=0, sticky="W")
 
     entry_year = Entry(self._insertWindow, width=30, textvariable=self._movie_year)
     entry_year.grid(row=1, column=1)
     
-    lbl_rating = Label(self._insertWindow, text='Rating:', font=('bold', 12), padx=5, pady=5,fg=lbl_color, bg=background)
+    lbl_rating = Label(self._insertWindow, text='Rating:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_rating.grid(row=2, column=0, sticky="W")
 
     entry_rating = Entry(self._insertWindow, width=30, textvariable=self._movie_rating)
     entry_rating.grid(row=2, column=1)
     
-    lbl_genre = Label(self._insertWindow, text='Genre:', font=('bold', 12), padx=5, pady=5,fg=lbl_color, bg=background)
+    lbl_genre = Label(self._insertWindow, text='Genre:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_genre.grid(row=3, column=0, sticky="W")
 
     genres=('Horror', 'Action', 'Romance', 'Comedy', 'Science Fiction', 'Drama', 'Thriller', 'Documentary', 'Western', 'Musical', 'Crime', 'Fiction', 'Romantic Comedy', 'Music', 'War', 'Adventure', 'Epic')
@@ -64,7 +64,7 @@ class InsertFrame(Frame):
     cbox_genre['state'] = 'readonly'  # normal    
     #cbox_genre.bind('<<ComboboxSelected>>', genre_selected)  
 
-    lbl_review = Label(self._insertWindow, text='Review:', font=('bold', 12), padx=5, pady=5,fg=lbl_color, bg=background)
+    lbl_review = Label(self._insertWindow, text='Review:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_review.grid(row=6, column=0, sticky="W")
 
     self._entry_review = Text(self._insertWindow, width=40, height=5, padx=5)
