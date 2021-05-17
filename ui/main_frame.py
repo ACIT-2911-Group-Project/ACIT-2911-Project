@@ -1,3 +1,4 @@
+from typing import Sized
 from ui.insert_frame import InsertFrame
 from ui.update_frame import UpdateFrame
 from business.data_access_helper import DataAccessHelper
@@ -5,7 +6,7 @@ from db.db_manager import DatabaseManager
 from Models.movie_review import Movie
 
 from tkinter import *
-from tkinter.ttk import Combobox, Treeview
+from tkinter.ttk import Combobox, Style, Treeview
 
 selected_movie_review = ""
 
@@ -14,8 +15,14 @@ class MainFrame(Frame):
   def __init__(self, parent):
     #Initialize the main frame
     Frame.__init__(self, parent)
+
+    #background color for the frames
+    background = "#000C66"
+    parent.configure(bg=background)
+    self.configure(bg=background)
     
-    self._parent = parent    
+    self._parent = parent
+
     #Define string variables for text entry fields
     self._movie_name_text = StringVar()
     self._movie_year_text = StringVar()
@@ -25,7 +32,7 @@ class MainFrame(Frame):
     
     #Search by Movie name
     #Create a label, an entry field, and a button      
-    lbl_search = Label(self, text='Search by name:', font=('bold', 12), pady=15)
+    lbl_search = Label(self, text='Search by name:', font=('bold', 12), pady=5, fg= "white", bg=background)
     lbl_search.grid(row=0, column=0, sticky="W")
 
     self.moviename_search_entry = Entry(self, width=60, textvariable=self._movie_name_text)
@@ -36,7 +43,7 @@ class MainFrame(Frame):
 
     #Search by Movie year
     #Create a label, an entry field, and a button
-    year_label = Label(self, text='Search by year:', font=('bold', 12), pady=15)
+    year_label = Label(self, text='Search by year:', font=('bold', 12), pady=5, fg= "white", bg=background)
     year_label.grid(row=1, column=0, sticky="W")
     
     self.year_entry = Entry(self, textvariable=self._movie_year_text)
@@ -47,7 +54,7 @@ class MainFrame(Frame):
     
     #Search by Movie rating
     #Create a label, an entry field, and a button
-    rating_label = Label(self, text='Search by rating:', font=('bold', 12), pady=15)
+    rating_label = Label(self, text='Search by rating:', font=('bold', 12), pady=5, fg= "white", bg=background)
     rating_label.grid(row=1, column=2, sticky="E")
     
     self.rating_entry = Entry(self, textvariable=self._movie_rating_text)
@@ -60,13 +67,13 @@ class MainFrame(Frame):
     frame_btns = Frame(self)
     frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
 
-    add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview)
+    add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview, bg='#2ECC71', fg='white')
     add_btn.grid(row=5, column=0, sticky="W")
 
-    remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview)
+    remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview, bg='#E74C3C', fg='white')
     remove_btn.grid(row=5, column=1)
 
-    update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview)
+    update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview, bg='#B7AC44', fg='white')
     update_btn.grid(row=5, column=2, sticky="E")
 
     # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearFields)
@@ -109,7 +116,6 @@ class MainFrame(Frame):
 
     # exit_btn = Button(self, text='Exit', width=12, padx=15, command=self._parent.destroy)
     # exit_btn.grid(row=22, column=2, sticky="E", pady=10)
-    
           
   def btnClickSearchByName(self):
     #Function to seach for the movie by name
@@ -194,3 +200,6 @@ class MainFrame(Frame):
     self.moviename_search_entry.delete(0, END)
     self.year_entry.delete(0, END) 
     pass
+
+  
+  
