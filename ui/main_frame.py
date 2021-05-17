@@ -56,9 +56,9 @@ class MainFrame(Frame):
     search_btn3 = Button(self, text='Search', width=12, command=self.btnClickSearchByRating)
     search_btn3.grid(row=3, column=2, sticky="E", pady=20)
     
-    #Create a new frame for the Insert, Update and Delete buttons
-    # frame_btns = Frame(self)
-    # frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
+    # Create a new frame for the Insert, Update and Delete buttons
+    frame_btns = Frame(self)
+    frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
 
     add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview)
     add_btn.grid(row=5, column=0, sticky="W")
@@ -69,7 +69,7 @@ class MainFrame(Frame):
     update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview)
     update_btn.grid(row=5, column=2, sticky="E")
 
-    # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearText)
+    # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearFields)
     # clear_btn.grid(row=0, column=3)      
     
     #Create a frame for the results
@@ -190,5 +190,7 @@ class MainFrame(Frame):
     self.populate_list(movie_reviews)
   
   def clearFields(self):
-    #clears the fields where user has inserted data 
+    #clears the fields where user has inserted data
+    self.moviename_search_entry.delete(0, END)
+    self.year_entry.delete(0, END) 
     pass

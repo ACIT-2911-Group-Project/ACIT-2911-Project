@@ -7,7 +7,7 @@ from db.db_manager import DatabaseManager
 #in order otherwise will not work
 
 
-#@pytest.fixture
+@pytest.fixture
 def setup_database():
     #fixture to set up database with test data
     #rowID (Primary Key) auto given by SQLite
@@ -27,7 +27,7 @@ def setup_database():
     conn.commit()
     db = DatabaseManager("test_flicks.db")
 
-def test_success_add():
+def test_success_add(setup_database):
     db = DatabaseManager("test_flicks.db")
     
     
@@ -40,7 +40,7 @@ def test_success_add():
     results = db.selectAll()
     assert len(results) == 2
 
-def test_fail_add():
+def test_fail_add(setup_database):
     #test all 5 incorrect fields - if each one returns the right error
     db = DatabaseManager("test_flicks.db")
     #test invalid id - should return Value error if not int
@@ -70,10 +70,14 @@ def test_fail_add():
     with pytest.raises(ValueError):
         db.insertByObject(Movie(11, "Trees", 2011, 7.0, "drama", False))
 
-def test_remove_movie_review():
+def test_remove_movie_review(setup_database):
     #Test if db manager delete movie review from database
     #starts with 4 movie review entries from previous tests
     db = DatabaseManager("test_flicks.db")
+    exa1 = Movie(1, "Lemon", 2011, 7.0, "comedy", "very good")
+    db.insertByObject(exa1)
+    exa2 = Movie(2, "Spiderman", 2012, 9.0, "action", "amazing")
+    db.insertByObject(exa2)
     
     #success
     db.removeByID(2)
