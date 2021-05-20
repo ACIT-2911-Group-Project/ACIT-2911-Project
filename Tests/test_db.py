@@ -3,8 +3,6 @@ import sqlite3
 from Models.movie_review import Movie
 from db.db_manager import DatabaseManager
 
-#Must delete test_flicks.db file and run tests
-#in order otherwise will not work
 
 
 @pytest.fixture
@@ -72,7 +70,6 @@ def test_fail_add(setup_database):
 
 def test_remove_movie_review(setup_database):
     #Test if db manager delete movie review from database
-    #starts with 4 movie review entries from previous tests
     db = DatabaseManager("test_flicks.db")
     exa1 = Movie(1, "Lemon", 2011, 7.0, "comedy", "very good")
     db.insertByObject(exa1)
@@ -84,3 +81,55 @@ def test_remove_movie_review(setup_database):
 
     results = db.selectAll()
     assert len(results) == 1
+    
+
+def test_update_movie_review(setup_database):
+    #Test if db manager update movie review from database
+    db = DatabaseManager("test_flicks.db")
+    exa1 = Movie(1, "Lemon", 2011, 7.0, "comedy", "very good")
+    db.insertByObject(exa1)
+
+    #change name of exa1
+    exa1.name = "Apple"
+
+    db.updateByObject(exa1)
+
+    result = db.selectAll()
+
+    assert exa1.name == result[0][1]
+
+    #change year of exa1
+    exa1.year = 2015
+
+    db.updateByObject(exa1)
+    
+    result = db.selectAll()
+    
+    assert exa1.year == result[0][2]
+    
+    #change rating of exa1
+    exa1.rating = 9.0
+
+    db.updateByObject(exa1)
+    
+    result = db.selectAll()
+    
+    assert exa1.rating == result[0][3]
+
+    #change genre of exa1
+    exa1.genre = "action"
+
+    db.updateByObject(exa1)
+    
+    result = db.selectAll()
+    
+    assert exa1.genre == result[0][4]
+    
+    #change year of exa1
+    exa1.review = "Exceptional"
+
+    db.updateByObject(exa1)
+    
+    result = db.selectAll()
+    
+    assert exa1.review == result[0][5]
