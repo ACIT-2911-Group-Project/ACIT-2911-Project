@@ -8,6 +8,7 @@ from Models.movie_review import Movie
 from tkinter import *
 from tkinter.ttk import Combobox, Style, Treeview
 from tkinter.messagebox import showerror, showwarning, showinfo
+from PIL import Image, ImageTk
 
 selected_movie_review = ""
 
@@ -83,6 +84,22 @@ class MainFrame(Frame):
     #Create a frame for the results
     frame_reviews = Frame(self)
     frame_reviews.grid(row=10, column=0, columnspan=3, rowspan=10, pady=25)
+
+    #Create logo at the bottom of the application for now
+
+    frame_logo = Frame(self)
+    frame_logo.grid(row=20, column=0, columnspan=5, pady=40)
+
+    image = Image.open("resource_files\\potatoe_logo.png")
+    photo = ImageTk.PhotoImage(image)
+
+    img_label = Label(image=photo)
+# Store a reference to a PhotoImage object, to avoid it
+# being garbage collected! This is necesary to display the image!
+    img_label.image = photo
+ 
+    img_label.grid(row=21, column=0)
+ 
 
     #Create a column for the result
     columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
