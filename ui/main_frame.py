@@ -25,6 +25,16 @@ class MainFrame(Frame):
     
     self._parent = parent
 
+    #Create logo at the bottom of the application for now
+    photo = PhotoImage(file='resource_files\potatoe_logo.png')
+    photo = photo.subsample(4, 4)
+
+    img_label = Label(self, image=photo, pady=5)
+
+    img_label.image = photo
+ 
+    img_label.grid(row=0, column=0)
+
     #Define string variables for text entry fields
     self._movie_name_text = StringVar()
     self._movie_year_text = StringVar()
@@ -32,74 +42,59 @@ class MainFrame(Frame):
 
     self.pack(fill="x", padx=20, pady=20)
     
+
     #Search by Movie name
     #Create a label, an entry field, and a button      
     lbl_search = Label(self, text='Search by name:', font=('bold', 12), pady=5, fg= "white", bg=background)
-    lbl_search.grid(row=0, column=0, sticky="W")
+    lbl_search.grid(row=1, column=0, sticky="W")
 
     self.moviename_search_entry = Entry(self, width=60, textvariable=self._movie_name_text)
-    self.moviename_search_entry.grid(row=0, column=1)
+    self.moviename_search_entry.grid(row=1, column=1)
     
     search_btn = Button(self, text='Search', width=12, command=self.btnClickSearchByName)
-    search_btn.grid(row=0, column=2, sticky="E")       
+    search_btn.grid(row=1, column=2, sticky="E")       
 
     #Search by Movie year
     #Create a label, an entry field, and a button
     year_label = Label(self, text='Search by year:', font=('bold', 12), pady=5, fg= "white", bg=background)
-    year_label.grid(row=1, column=0, sticky="W")
+    year_label.grid(row=2, column=0, sticky="W")
     
     self.year_entry = Entry(self, textvariable=self._movie_year_text)
-    self.year_entry.grid(row=2, column=0, sticky="W")
+    self.year_entry.grid(row=3, column=0, sticky="W")
     
     search_btn2 = Button(self, text='Search', width=12, command=self.btnClickSearchByYear)
-    search_btn2.grid(row=3, column=0, sticky="W", pady=20)
+    search_btn2.grid(row=4, column=0, sticky="W", pady=20)
     
     #Search by Movie rating
     #Create a label, an entry field, and a button
     rating_label = Label(self, text='Search by rating:', font=('bold', 12), pady=5, fg= "white", bg=background)
-    rating_label.grid(row=1, column=2, sticky="E")
+    rating_label.grid(row=2, column=2, sticky="E")
     
     self.rating_entry = Entry(self, textvariable=self._movie_rating_text)
-    self.rating_entry.grid(row=2, column=2, sticky="E")
+    self.rating_entry.grid(row=3, column=2, sticky="E")
     
     search_btn3 = Button(self, text='Search', width=12, command=self.btnClickSearchByRating)
-    search_btn3.grid(row=3, column=2, sticky="E", pady=20)
+    search_btn3.grid(row=4, column=2, sticky="E", pady=20)
     
     # Create a new frame for the Insert, Update and Delete buttons
     frame_btns = Frame(self)
-    frame_btns.grid(row=4, column=0, columnspan=5, pady=40)
+    frame_btns.grid(row=5, column=0, columnspan=5, pady=40)
 
     add_btn = Button(self, text='Add Review', width=12, padx=15, command=self.addReview, bg='#2ECC71', fg='white')
-    add_btn.grid(row=5, column=0, sticky="W")
+    add_btn.grid(row=6, column=0, sticky="W")
 
     remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview, bg='#E74C3C', fg='white')
-    remove_btn.grid(row=5, column=1)
+    remove_btn.grid(row=7, column=1)
 
     update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview, bg='#B7AC44', fg='white')
-    update_btn.grid(row=5, column=2, sticky="E")
+    update_btn.grid(row=8, column=2, sticky="E")
 
     # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearFields)
     # clear_btn.grid(row=0, column=3)      
     
     #Create a frame for the results
     frame_reviews = Frame(self)
-    frame_reviews.grid(row=10, column=0, columnspan=3, rowspan=10, pady=25)
-
-    #Create logo at the bottom of the application for now
-
-    frame_logo = Frame(self)
-    frame_logo.grid(row=20, column=0, columnspan=5, pady=40)
-
-    image = Image.open("resource_files\\potatoe_logo.png")
-    photo = ImageTk.PhotoImage(image)
-
-    img_label = Label(image=photo)
-# Store a reference to a PhotoImage object, to avoid it
-# being garbage collected! This is necesary to display the image!
-    img_label.image = photo
- 
-    img_label.grid(row=21, column=0)
- 
+    frame_reviews.grid(row=11, column=0, columnspan=3, rowspan=10, pady=25)
 
     #Create a column for the result
     columns = ['id', 'Name', 'Year', 'Rating', 'Genre', 'Review']
