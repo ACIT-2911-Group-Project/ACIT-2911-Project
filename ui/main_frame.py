@@ -26,14 +26,14 @@ class MainFrame(Frame):
     self._parent = parent
 
     #Create logo at the bottom of the application for now
-    photo = PhotoImage(file='resource_files\potatoe_logo.png')
-    photo = photo.subsample(4, 4)
+    photo = PhotoImage(file='resource_files\potatoe_logo_final.png')
+    resized_photo = photo.subsample(2, 2)
 
-    img_label = Label(self, image=photo, pady=5)
+    img_label = Label(self, image=resized_photo, pady=5, bg=background)
 
-    img_label.image = photo
+    img_label.image = resized_photo
  
-    img_label.grid(row=0, column=0)
+    img_label.grid(row=0, column=0, columnspan=3)
 
     #Define string variables for text entry fields
     self._movie_name_text = StringVar()
@@ -84,10 +84,10 @@ class MainFrame(Frame):
     add_btn.grid(row=6, column=0, sticky="W")
 
     remove_btn = Button(self, text='Remove Review', width=12, padx=15, command=self.deleteReview, bg='#E74C3C', fg='white')
-    remove_btn.grid(row=7, column=1)
+    remove_btn.grid(row=6, column=1)
 
     update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview, bg='#B7AC44', fg='white')
-    update_btn.grid(row=8, column=2, sticky="E")
+    update_btn.grid(row=6, column=2, sticky="E")
 
     # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearFields)
     # clear_btn.grid(row=0, column=3)      
