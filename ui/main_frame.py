@@ -8,6 +8,7 @@ from Models.movie_review import Movie
 from tkinter import *
 from tkinter.ttk import Combobox, Style, Treeview
 from tkinter.messagebox import showerror, showwarning, showinfo
+from PIL import Image, ImageTk
 
 selected_movie_review = ""
 
@@ -21,6 +22,18 @@ class MainFrame(Frame):
     background = "#000C66"
     parent.configure(bg=background)
     self.configure(bg=background)
+
+    #open logo
+    logo = Image.open("ui\potato.png")
+
+    #resized logo
+    resized = logo.resize((320,120), Image.ANTIALIAS)
+
+    new_logo = ImageTk.PhotoImage(resized)
+
+    img = Label(self, image=new_logo, bg=background)
+    img.image = new_logo
+    img.place(x=140, y=50)
     
     self._parent = parent
 
