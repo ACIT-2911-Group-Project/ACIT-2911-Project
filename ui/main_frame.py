@@ -27,7 +27,7 @@ class MainFrame(Frame):
     logo = Image.open("ui\potato.png")
 
     #resized logo
-    resized = logo.resize((320,120), Image.ANTIALIAS)
+    resized = logo.resize((320,90), Image.ANTIALIAS)
 
     new_logo = ImageTk.PhotoImage(resized)
 
