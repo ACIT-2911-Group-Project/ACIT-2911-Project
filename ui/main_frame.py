@@ -89,8 +89,7 @@ class MainFrame(Frame):
     update_btn = Button(self, text='Update Review', width=12, padx=15, command=self.updateReview, bg='#B7AC44', fg='white')
     update_btn.grid(row=6, column=2, sticky="E")
 
-    # clear_btn = Button(frame_btns, text='Clear Input', width=12, command=self.clearFields)
-    # clear_btn.grid(row=0, column=3)      
+       
     
     #Create a frame for the results
     frame_reviews = Frame(self)
@@ -124,11 +123,11 @@ class MainFrame(Frame):
     
     self._movie_tree_view.config(yscrollcommand=scrollbar.set)          
 
-    # clear_btn = Button(self, text='Clear Fields', width=12, padx=15, command=self.clearFields)
-    # clear_btn.grid(row=22, column=0, sticky="W", pady=10)
+    clear_btn = Button(self, text='Clear Fields', width=12, padx=15, command=self.clearFields)
+    clear_btn.grid(row=22, column=0, sticky="W", pady=10)
 
-    # exit_btn = Button(self, text='Exit', width=12, padx=15, command=self._parent.destroy)
-    # exit_btn.grid(row=22, column=2, sticky="E", pady=10)
+    exit_btn = Button(self, text='Exit', width=12, padx=15, command=self._parent.destroy)
+    exit_btn.grid(row=22, column=2, sticky="E", pady=10)
           
   def btnClickSearchByName(self):
     #Function to seach for the movie by name
