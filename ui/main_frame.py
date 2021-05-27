@@ -225,7 +225,8 @@ class MainFrame(Frame):
   def clearFields(self):
     #clears the fields where user has inserted data
     self.moviename_search_entry.delete(0, END)
-    self.year_entry.delete(0, END) 
+    self.year_entry.delete(0, END)
+    self.rating_entry.delete(0, END) 
     pass
 
   

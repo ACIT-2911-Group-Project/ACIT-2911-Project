@@ -69,4 +69,5 @@ class DatabaseManager:
         self._db.commit()
         
     def close(self):
+        #close connection with database
         self._db.close()

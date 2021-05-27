@@ -34,25 +34,28 @@ class UpdateFrame(Frame):
     self._movie_genre = StringVar()
     self._movie_review = StringVar()
     
-    
+    #name entry
     lbl_name = Label(self._updateWindow, text='Name:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_name.grid(row=0, column=0, sticky="W")
 
     entry_name = Entry(self._updateWindow, width=35, textvariable=self._movie_name)
     entry_name.grid(row=0, column=1, sticky="W")
     
+    #year entry
     lbl_year = Label(self._updateWindow, text='Year:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_year.grid(row=1, column=0, sticky="W")
 
     entry_year = Entry(self._updateWindow, width=35, textvariable=self._movie_year)
     entry_year.grid(row=1, column=1, sticky="W")
     
+    #rating entry
     lbl_rating = Label(self._updateWindow, text='Rating:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_rating.grid(row=2, column=0, sticky="W")
 
     entry_rating = Entry(self._updateWindow, width=35, textvariable=self._movie_rating)
     entry_rating.grid(row=2, column=1, sticky="W")
     
+    #genre entry
     lbl_genre = Label(self._updateWindow, text='Genre:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_genre.grid(row=3, column=0, sticky="W")
 
