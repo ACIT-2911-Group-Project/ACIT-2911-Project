@@ -98,6 +98,7 @@ def test_update_movie_review(setup_database):
 
     assert exa1.name == result[0][1]
 
+
     #change year of exa1
     exa1.year = 2015
 
@@ -125,7 +126,7 @@ def test_update_movie_review(setup_database):
     
     assert exa1.genre == result[0][4]
     
-    #change year of exa1
+    #change review of exa1
     exa1.review = "Exceptional"
 
     db.updateByObject(exa1)
