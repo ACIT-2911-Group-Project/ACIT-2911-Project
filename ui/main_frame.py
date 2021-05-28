@@ -130,8 +130,9 @@ class MainFrame(Frame):
     exit_btn.grid(row=22, column=2, sticky="E", pady=10)
 
 
-  # Function to seach for the movie by name       
+     
   def btnClickSearchByName(self):
+      # Function to seach for the movie by name  
     movie_name = self._movie_name_text.get()      
     
     if not movie_name:
@@ -141,49 +142,55 @@ class MainFrame(Frame):
         
     self.refreshTreeView(movie_reviews)
 
-  # Function to seach for the movie by year      
+       
   def btnClickSearchByYear(self):
+    # Function to seach for the movie by year 
     movie_year = int(self._movie_year_text.get())  
     
     movie_reviews = DataAccessHelper().queryByMovieYear(movie_year)
     
     self.refreshTreeView(movie_reviews)
 
-  # Function to seach for the movie by rating   
+ 
   def btnClickSearchByRating(self):
+      # Function to seach for the movie by rating  
     movie_rating = float(self._movie_rating_text.get())  
     
     movie_reviews = DataAccessHelper().queryByMovieRating(movie_rating)
     
     self.refreshTreeView(movie_reviews)
 
-  # Display the list of movies from the tree view
+  
   def populate_list(self, movie_reviews):
-        
+      # Display the list of movies from the tree view 
     for row in movie_reviews:
         self._movie_tree_view.insert('', 'end', values=row)
 
-  # Clear the list of the movie tree view        
+         
   def clear_list(self):
+    # Clear the list of the movie tree view 
     for i in self._movie_tree_view.get_children():
         self._movie_tree_view.delete(i)
 
-  # Get the movie review information from the selected item in the list          
+           
   def select_movie(self, event):
+    # Get the movie review information from the selected item in the list 
     global selected_movie_review
     
     index = self._movie_tree_view.selection()[0]
     selected_movie_review = self._movie_tree_view.item(index)["values"]
     print(selected_movie_review[0])
 
-  # Add review of the movie     
+      
   def addReview(self):
+    # Add review of the movie 
     dlg = InsertFrame(self._parent)
     self._parent.wait_window(dlg._insertWindow)
     self.refreshTreeView()
     
-  # Delete the review  
+   
   def deleteReview(self):
+    # Delete the review 
     global selected_movie_review
     
     #get id of movie to delete - movie review selected by user
@@ -196,8 +203,9 @@ class MainFrame(Frame):
 
     selected_movie_review=''   
 
-  # Update the review   
+  
   def updateReview(self):
+    # Update the review   
     global selected_movie_review
     
     if selected_movie_review != '':
@@ -217,16 +225,18 @@ class MainFrame(Frame):
     
     selected_movie_review=''        
 
-  # Refresh list of movie reviews - called after CRUD actions or user searchs for review
+  
   def refreshTreeView(self, movie_reviews=None):
+    # Refresh list of movie reviews - called after CRUD actions or user searchs for review
     if movie_reviews is None:
       movie_reviews = DataAccessHelper().queryAll()
       
     self.clear_list()
     self.populate_list(movie_reviews)
 
-  # clears the fields where user has inserted data
+  
   def clearFields(self):
+    # clears the fields where user has inserted data
     self.moviename_search_entry.delete(0, END)
     self.year_entry.delete(0, END) 
     self.rating_entry.delete(0, END)
