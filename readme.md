@@ -4,43 +4,37 @@
 ## ACIT 2911 Group 10
 Created by: Rai, Brian, Riley, Matthew, RJ, Vince
 
-## **What problem this solves**
 
-### __Problem__: 
+## **Description**
+Rotten Potatoes is a simple desktop GUI application with C.R.U.D capabilities. Users can search movie reviews by name, year, rating, and key words. 
 
-Some movie reviews applications like  Rotten Tomatoes are filled with biased and paid reviews by movie producers who only have interest with specific types of movie reviews. 
+## **Project Structure:**
 
-### __Solution__:
+* ### **Business directory** 
+    responsible for passing data from UI to database. Acts as middle man passing data through frames
 
-Our team decided to create this desktop GUI application so that we don’t have to look at inaccurate movie reviews when looking for good movies to watch.
+* ### **DB directory** 
+    responsible for backend SQLite commands to interact with database
 
-## **Why we built this project**
+* ### **Models directory** 
+    responsible for handling logic for attributes of movie reviews stored
 
-We wanted to build this project to create a desktop GUI application that will allow the user to create, read, update, and delete movie reviews. We also wanted our application to have honest reviews without biased and paid reviews by movie producers.
+* ### **Resource files directory**
+    stores Rotten Tomatoes logo img
 
-## **Our motivations**
+* ### **Tests directory**
+	responsible for storing tests for movie review model, and for db
+	
+* ### **UI directory**
+    responsible for displaying screens to users and collecting input. There are 3 different frames - main frame, insert frame, update frame
 
-Our motivation for this project is that we want to create an honest desktop application that will help other user’s to find a good movie to watch.
 
-## **Program Description**
+* ### **CircleCI directory**
+    Stores config.yml file that is responsible for running unit tests on each push 
 
-Rotten Potatoes is a simple desktop GUI application that allows the user to read, write, and edit reviews for their favorite movies. In addition, our movie review app allows users to search movie reviews by name, year, rating, and key words.
 
-## **Features**
-
-**Select all reviews** - Allows the user to view all the movies registered in the application.
-
-**Search** - the user can search movies that they want to read or write reviews by names, rating, and year.
-
-**Add reviews** (in green) - Allows the user to see their own movie reviews later on.
-
-**Remove reviews (in red)** - Allows the user to be able to clean up their own list of movie reviews.
-
-**Update reviews (in yellow)** - Allows the user to match certain movie reviews towards their own honest opinion and interests.
-
-**Clear fields** - Allows users to clear input from the search bar.
-
-**Exit** - Allows users to be able to exit the application.
+* ### **app.py**
+    responsible for running our program - initializes and passes a Tkinter object to mainframe in UI
 
 ## **Technologies Used**
 
@@ -52,23 +46,51 @@ Rotten Potatoes is a simple desktop GUI application that allows the user to read
 * CircleCI
 * GitHub
 
+NOTE: Only add dependencies once a virtual environment has been created, as to not interfere with global packages. Dependencies (install using 'pip install x', where x is the name of the library listed below):
+
+## **Dependencies Required:**
+* Pillow
+* Pytest - if you want to run unit tests
+
 ## **Installation**
 
+We created an EXE for this project so users do not have to download Python and the dependencies needed. The EXE will not be part of our final deliverable - it was only for the presentation. We are submitting the source code for our project.
+
+The following instructions will explain how to run the application from the source code (no EXE).
+
 ### **Procedure**
-Simply download and run the Rotten_Potatoes.EXE (This might not be the right file name)
+* After installing the above programs and dependencies:
+    1. Open Windows terminal in the root directory of the application
+    2. Execute “python app.py” - this will start with application
+    3. To view movie reviews in the database, click on the “Search” button beside   “Search by name:”
+    
+    *Windows OS needed. Desktop app has not been tested on any other OS*
 
-### **Requirements**
-Windows 7
 
-## **What we learned during the project**
 
-* How to stylize a GUI with tkinter
-* Connecting a python application to an SQL server to search for reviews with keywords
-* Converting a python application into an EXE using pyinstaller
-* How to style and color using UX/UI      
-* Integrating CircleCI into our github repository
-* Feature branching in our repository with a team through Github
-* Integrating CD into our python application and unit testing
+
+
+## **Features - C.R.U.D**
+
+* **Select all reviews** - Allows the user to view all the movies registered in the application.
+
+* **Search** - the user can search movies that they want to read or write reviews by names, rating, and year.
+
+* **Add reviews** (in green) - Allows the user to see their own movie reviews later on.
+
+* **Remove reviews (in red)** - Allows the user to be able to clean up their own list of movie reviews.
+
+* **Update reviews (in yellow)** - Allows the user to match certain movie reviews towards their own honest opinion and interests.
+
+* **Clear fields** - Allows users to clear input from the search bar.
+
+* **Exit** - Allows users to be able to exit the application.
+
+---
+__*To REMOVE or UPDATE movie review entries, users must SELECT the intended movie review first, and then click the corresponding button according to their desired action*__
+
+__If users do not SELECT movies before clicking UPDATE review or DELETE review, a helpful error message will be presented in the GUI specifying how to correctly complete the action.__
+
 
 
 
