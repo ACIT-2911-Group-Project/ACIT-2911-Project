@@ -1,5 +1,5 @@
 
-# ![GitHub Logo](./ui/Potatoe.PNG)
+# ![GitHub Logo](./resource_files/Potatoe.PNG)
 
 ## ACIT 2911 Group 10
 Created by: Rai, Brian, Riley, Matthew, RJ, Vince
