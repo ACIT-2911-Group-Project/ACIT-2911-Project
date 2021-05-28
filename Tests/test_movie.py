@@ -68,9 +68,7 @@ def test_bad_review():
         Movie(2, "Trees", 2011, 7.0, "comedy", 10)
         
 def test_id_property(good_review):
-    """
-    Tests whether id property exists
-    """
+    #Tests whether id property exists
     assert hasattr(good_review, '_id')
     assert type(good_review.__class__.id) == property
     assert good_review._id == 2

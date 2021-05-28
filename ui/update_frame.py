@@ -11,7 +11,7 @@ class UpdateFrame(Frame):
     
     Frame.__init__(self, parent_)
     
-    #color styling
+    #Color styling
     background = "#000C66"
     lbl_color = 'white'
     self.configure(bg=background) 
@@ -34,28 +34,28 @@ class UpdateFrame(Frame):
     self._movie_genre = StringVar()
     self._movie_review = StringVar()
     
-    #name entry
+    #Name entry
     lbl_name = Label(self._updateWindow, text='Name:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_name.grid(row=0, column=0, sticky="W")
 
     entry_name = Entry(self._updateWindow, width=35, textvariable=self._movie_name)
     entry_name.grid(row=0, column=1, sticky="W")
     
-    #year entry
+    #Year entry
     lbl_year = Label(self._updateWindow, text='Year:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_year.grid(row=1, column=0, sticky="W")
 
     entry_year = Entry(self._updateWindow, width=35, textvariable=self._movie_year)
     entry_year.grid(row=1, column=1, sticky="W")
     
-    #rating entry
+    #Rating entry
     lbl_rating = Label(self._updateWindow, text='Rating:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_rating.grid(row=2, column=0, sticky="W")
 
     entry_rating = Entry(self._updateWindow, width=35, textvariable=self._movie_rating)
     entry_rating.grid(row=2, column=1, sticky="W")
     
-    #genre entry
+    #Genre entry
     lbl_genre = Label(self._updateWindow, text='Genre:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_genre.grid(row=3, column=0, sticky="W")
 
@@ -79,9 +79,8 @@ class UpdateFrame(Frame):
     cancel_btn = Button(self._updateWindow, text='Cancel', width=12, command=self.btnClickCancel, fg=lbl_color, bg='#E74C3C')
     cancel_btn.grid(row=10, column=1, sticky="E", padx=5, pady=10)
     
-    #
-    # Initialize the controls with the movie review that was selected
-    #
+    #Initialize the controls with the movie review that was selected
+
     entry_name.delete(0, END)
     entry_name.insert(END, self._movie.name)  
     
@@ -100,7 +99,7 @@ class UpdateFrame(Frame):
     #self.pack()
     self.pack(fill="x", padx=20, pady=20)
                   
-    # self._insertWindow.mainloop()
+    #self._insertWindow.mainloop()
       
   def btnClickUpdateReview(self):
     try:
@@ -123,10 +122,10 @@ class UpdateFrame(Frame):
       self._updateWindow.destroy()
       
   def center_window(self, w=300, h=200):
-      # get screen width and height
+      #Get screen width and height
       ws = self._updateWindow.winfo_screenwidth()
       hs = self._updateWindow.winfo_screenheight()
-      # calculate position x, y
+      #Calculate position x, y
       x = (ws/2) - (w/2)    
       y = (hs/2) - (h/2)
       self._updateWindow.geometry('%dx%d+%d+%d' % (w, h, x, y))      

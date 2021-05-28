@@ -22,13 +22,13 @@ class DatabaseManager:
             
             
     def insertByFields(self, name_, year_, rating_, genre_, review_):
-        "add a new movie to db"
+        #Add a new movie to db"
         fields = [name_, year_, rating_, genre_, review_]
         self._cursor.execute("INSERT INTO movies ('name', 'year', 'rating', 'genre', 'review') VALUES (?,?,?,?,?);", fields)
         self._db.commit()
 
     def insertByObject(self, movie_):
-        "add a new movie to db"
+        #Add a new movie to db
         fields = [movie_.name, movie_.year, movie_.rating, movie_.genre, movie_.review]
         self._cursor.execute("INSERT INTO movies ('name', 'year', 'rating', 'genre', 'review') VALUES (?,?,?,?,?);", fields)
         self._db.commit()
@@ -69,5 +69,5 @@ class DatabaseManager:
         self._db.commit()
         
     def close(self):
-        #close connection with database
+        #Close connection with database
         self._db.close()

@@ -7,10 +7,10 @@ from tkinter.ttk import Combobox,Style, Treeview
 class InsertFrame(Frame):
   
   def __init__(self, parent):
-    #initialize the insert frame
+    #Initialize the insert frame
     Frame.__init__(self, parent)
 
-    #background color and style
+    #Background color and style
     background = "#000C66"
     lbl_color = 'white'
     self.configure(bg=background) 
@@ -18,7 +18,7 @@ class InsertFrame(Frame):
 
     self._parent = parent
 
-    #set the insert window frame    
+    #Set the insert window frame    
     self._insertWindow = Toplevel(self._parent)
     self._insertWindow.transient(parent)
     self._insertWindow.grab_set()
@@ -35,7 +35,7 @@ class InsertFrame(Frame):
     self._movie_genre = StringVar()
     self._movie_review = StringVar()
      
-    #create the label for the name, year, rating, and genre with an entry field
+    #Create the label for the name, year, rating, and genre with an entry field
     lbl_name = Label(self._insertWindow, text='Name:', font=('bold', 12), padx=5, pady=5, fg=lbl_color, bg=background)
     lbl_name.grid(row=0, column=0, sticky="W")
 
@@ -106,4 +106,3 @@ class InsertFrame(Frame):
       self._insertWindow.destroy()
 
  
-

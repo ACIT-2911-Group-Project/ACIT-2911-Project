@@ -18,7 +18,7 @@ class MainFrame(Frame):
     #Initialize the main frame
     Frame.__init__(self, parent)
 
-    #background color for the frames
+    #Background color for the frames
     background = "#000C66"
     parent.configure(bg=background)
     self.configure(bg=background)
@@ -76,7 +76,7 @@ class MainFrame(Frame):
     search_btn3 = Button(self, text='Search', width=12, command=self.btnClickSearchByRating)
     search_btn3.grid(row=4, column=2, sticky="E", pady=20)
     
-    # Create a new frame for the Insert, Update and Delete buttons
+    #Create a new frame for the Insert, Update and Delete buttons
     frame_btns = Frame(self)
     frame_btns.grid(row=5, column=0, columnspan=5, pady=40)
 
@@ -123,11 +123,11 @@ class MainFrame(Frame):
     
     self._movie_tree_view.config(yscrollcommand=scrollbar.set)          
 
-    #clear fields button
+    #Clear fields button
     clear_btn = Button(self, text='Clear Fields', width=12, padx=15, command=self.clearFields)
     clear_btn.grid(row=22, column=0, sticky="W", pady=10)
 
-    #exit button
+    #Exit button
     exit_btn = Button(self, text='Exit', width=12, padx=15, command=self._parent.destroy)
     exit_btn.grid(row=22, column=2, sticky="E", pady=10)
           
@@ -185,7 +185,7 @@ class MainFrame(Frame):
   def deleteReview(self):
     #Delete the review
     global selected_movie_review
-    #get id of movie to delete - movie review selected by user
+    #Get id of movie to delete - movie review selected by user
     if selected_movie_review != "":
       movie_to_del = selected_movie_review[0]
       DataAccessHelper().removeMovieReview(movie_to_del)
@@ -200,7 +200,7 @@ class MainFrame(Frame):
     global selected_movie_review
     if selected_movie_review != '':
 
-      #create Movie object from selected movie review
+      #Create Movie object from selected movie review
       movie_review = Movie(selected_movie_review[0], 
                         selected_movie_review[1], 
                         int(selected_movie_review[2]), 
@@ -208,7 +208,7 @@ class MainFrame(Frame):
                         selected_movie_review[4],
                         selected_movie_review[5])
       
-      #pass Movie object created to Updateframe
+      #Pass Movie object created to Updateframe
       dlg = UpdateFrame(self._parent, movie_review) 
       self._parent.wait_window(dlg._updateWindow)
       self.refreshTreeView()
@@ -219,7 +219,7 @@ class MainFrame(Frame):
     selected_movie_review=''        
 
   def refreshTreeView(self, movie_reviews=None):
-    #refresh list of movie reviews - called after CRUD actions or user searchs for review
+    #Refresh list of movie reviews - called after CRUD actions or user searchs for review
     if movie_reviews is None:
       movie_reviews = DataAccessHelper().queryAll()
       
@@ -227,11 +227,10 @@ class MainFrame(Frame):
     self.populate_list(movie_reviews)
   
   def clearFields(self):
-    #clears the fields where user has inserted data
+    #Clear the fields where user has inserted data
     self.moviename_search_entry.delete(0, END)
     self.year_entry.delete(0, END)
     self.rating_entry.delete(0, END) 
     pass
 
-  
   
